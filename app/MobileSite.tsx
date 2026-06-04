@@ -124,6 +124,9 @@ export default function MobileSite({ lang }: { lang: Lang }) {
   const [menu, setMenu] = useState(false);
   const [sent, setSent] = useState(false);
   const headFont = lang === 'th' ? "'Kanit', sans-serif" : "'Playfair Display', serif";
+  // The hero headline is English on BOTH languages (matching the desktop clone),
+  // so always render it in the elegant Playfair serif — not Kanit on /th.
+  const heroFont = "'Playfair Display', serif";
 
   return (
     <div className="msite" lang={lang}>
@@ -158,7 +161,7 @@ export default function MobileSite({ lang }: { lang: Lang }) {
       <section id="top" className="mhero">
         <img className="mhero-bg" src={IMG.hero} alt="" aria-hidden="true" />
         <div className="mhero-inner">
-          <h1 style={{ fontFamily: headFont }}>{t.hero.title}</h1>
+          <h1 style={{ fontFamily: heroFont }}>{t.hero.title}</h1>
           <div className="mhero-with">{t.hero.with}</div>
           <p className="mquote">{t.hero.quote}</p>
           <a className="mbtn mbtn-blue" href="#m-booking">{t.hero.cta}</a>
