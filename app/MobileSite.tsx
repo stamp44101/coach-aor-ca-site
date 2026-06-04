@@ -141,13 +141,18 @@ export default function MobileSite({ lang }: { lang: Lang }) {
         </div>
       </header>
 
-      {menu && (
-        <nav className="mmenu" onClick={() => setMenu(false)}>
-          {t.nav.map(([label, href]: [string, string]) => (
-            <a key={href} href={href}>{label}</a>
-          ))}
-        </nav>
-      )}
+      {/* slide-in menu from the right + dimmed backdrop */}
+      <div
+        className={'mmenu-backdrop' + (menu ? ' is-open' : '')}
+        onClick={() => setMenu(false)}
+        aria-hidden={!menu}
+      />
+      <nav className={'mmenu' + (menu ? ' is-open' : '')} aria-hidden={!menu}>
+        <button className="mmenu-close" aria-label="Close menu" onClick={() => setMenu(false)}>×</button>
+        {t.nav.map(([label, href]: [string, string]) => (
+          <a key={href} href={href} onClick={() => setMenu(false)}>{label}</a>
+        ))}
+      </nav>
 
       {/* hero */}
       <section id="top" className="mhero">
