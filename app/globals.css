@@ -1,0 +1,71 @@
+/* Tailwind v4 WITHOUT preflight, so its reset can't fight Canva's own
+   resets or the absolute layout of the clone. Utilities + theme only. */
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+@source '../app/**/*.{ts,tsx}';
+
+html, body { margin: 0; padding: 0; }
+
+/* Working contact form that replaces Canva's embedded form widget, styled to
+   match the original (labels above fields, rounded inputs, tan Send button).
+   Fills the container the widget occupied. Restyle freely. */
+.clonner-form {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+  padding: 30px clamp(18px, 5%, 44px);
+  background: transparent;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+.clonner-form__label {
+  font-size: 17px;
+  color: #6f6a62;
+  margin: 10px 0 2px;
+}
+.clonner-form__field {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 16px;
+  border: 1px solid #e3ded5;
+  border-radius: 10px;
+  font-size: 15px;
+  color: #3a352e;
+  background: #ffffff;
+  outline: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+.clonner-form__field:focus {
+  border-color: #b3a594;
+  box-shadow: 0 0 0 3px rgba(179, 165, 148, 0.22);
+}
+textarea.clonner-form__field { resize: vertical; min-height: 96px; }
+.clonner-form__submit {
+  margin-top: 16px;
+  padding: 15px 18px;
+  border: none;
+  border-radius: 999px;
+  background: #b3a594;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: .03em;
+  cursor: pointer;
+  transition: background .15s;
+}
+.clonner-form__submit:hover { background: #a0917e; }
+.clonner-form__done {
+  display: none;
+  font-size: 17px;
+  color: #6f6a62;
+  text-align: center;
+  padding: 24px 0;
+}
+.clonner-form--sent .clonner-form__label,
+.clonner-form--sent .clonner-form__field,
+.clonner-form--sent .clonner-form__submit { display: none; }
+.clonner-form--sent .clonner-form__done { display: block; }

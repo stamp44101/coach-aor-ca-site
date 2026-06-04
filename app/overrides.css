@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700&family=Trirong:ital,wght@0,400;0,500;0,600;1,500&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Sarabun:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
+/* Your design-specific overrides. This file is NOT overwritten on re-clone. */
+
+/* Full-bleed hero background (the lily) edge-to-edge. The lily is clipped to the
+   1440px design frame by ancestors that use overflow:hidden AND contain:paint
+   (Canva does this for perf — contain:paint clips painting even when overflow is
+   visible). Un-clip BOTH, scoped via :has to only the chain holding the lily so
+   other sections are unaffected, then stretch the lily to the viewport width. */
+.GDnEHQ:has(img[src*="05e1b97c"]),
+.onhyOQ:has(img[src*="05e1b97c"]),
+._8jGYJw:has(img[src*="05e1b97c"]),
+.H5qArQ:has(img[src*="05e1b97c"]),
+.Zp7NQw:has(img[src*="05e1b97c"]),
+.Izwocg:has(img[src*="05e1b97c"]) {
+  overflow: visible !important;
+  contain: none !important;
+  /* Decorative background only — after full-bleed it overlaps the nav, so let
+     clicks pass through to the nav / toggle behind it. */
+  pointer-events: none !important;
+}
+
+img[src*="05e1b97c"] {
+  /* Match the original hero photo: 116.6vw wide, stretched to fill (object-fit:
+     fill), centred slightly right of viewport — so the lily reads large and
+     balanced instead of small and right-heavy. Height clips it to the hero band. */
+  width: 116.6vw !important;
+  max-width: none !important;
+  pointer-events: none !important;
+  height: 937px !important;
+  object-fit: fill !important;
+  left: 50% !important;
+  transform: translateX(calc(-50% - 90px + 6.2vw)) !important;
+}
+
+/* On scaled-down (mobile/tablet) viewports the page is zoomed to fit, so size
+   the hero photo to the 1440 frame (116.6% = 1679px) instead of 100vw — it then
+   fills the width after zoom, matching the desktop look (large, balanced lily). */
+@media (max-width: 1439px) {
+  img[src*="05e1b97c"] {
+    width: 1679px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+}
