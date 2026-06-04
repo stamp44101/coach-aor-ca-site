@@ -13,6 +13,10 @@
   background: var(--cream);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+}
+/* Thai mobile body uses Noto Sans Thai for a cleaner, minimal look */
+.msite[lang="th"] {
+  font-family: 'Noto Sans Thai', system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
 }
 .msite img { display: block; max-width: 100%; }
@@ -111,16 +115,55 @@
 .mcenter { text-align: center; }
 .mh2 { margin: 0 0 24px; font-size: clamp(28px, 7vw, 34px); color: #5a4632; font-weight: 600; line-height: 1.2; }
 
-/* ---- service cards ---- */
+/* ---- service cards (desktop-style: text overlaid on a dimmed image) ---- */
 .mcards { display: flex; flex-direction: column; gap: 22px; }
-.mcard { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 20px rgba(80,60,40,0.08); }
-.mcard-img { width: 100%; height: 190px; object-fit: cover; }
-.mcard-body { padding: 20px 20px 22px; }
-.mcard-title { margin: 0; font-size: 21px; color: #5a4632; font-weight: 600; }
-.mcard-desc { margin-top: 10px; font-size: 15.5px; color: #5b4d41; }
+.mcard {
+  position: relative; border-radius: 16px; overflow: hidden;
+  min-height: 420px; display: flex;
+  box-shadow: 0 8px 24px rgba(80,60,40,0.16);
+  isolation: isolate;
+}
+.mcard-img {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%; object-fit: cover;
+}
+/* dimming scrim: darker at the bottom where the text sits, for readability */
+.mcard::after {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg,
+    rgba(35,26,18,0.30) 0%,
+    rgba(35,26,18,0.45) 42%,
+    rgba(35,26,18,0.78) 100%);
+}
+.mcard-body {
+  position: relative; z-index: 2;
+  margin-top: auto;                 /* push content to the bottom, like desktop */
+  padding: 22px 22px 24px;
+  color: #fff; width: 100%;
+}
+.mcard-title {
+  margin: 0; font-size: 26px; font-weight: 600; color: #fff;
+  font-family: 'Playfair Display', serif;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+}
+.msite[lang="th"] .mcard-title { font-family: 'Kanit', sans-serif; }
+.mcard-desc {
+  margin-top: 10px; font-size: 14.5px; line-height: 1.55;
+  color: rgba(255,255,255,0.92); text-shadow: 0 1px 4px rgba(0,0,0,0.45);
+}
 .mcard-list { margin: 14px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
-.mcard-list li { font-size: 13.5px; color: #6b5743; background: var(--cream2); padding: 6px 12px; border-radius: 999px; }
-.mcard-meta { margin-top: 16px; font-size: 13px; color: var(--muted); border-top: 1px solid rgba(0,0,0,0.06); padding-top: 12px; }
+.mcard-list li {
+  font-size: 13px; color: #fff;
+  background: rgba(255,255,255,0.16);
+  border: 1px solid rgba(255,255,255,0.28);
+  padding: 6px 12px; border-radius: 999px;
+  backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
+}
+.mcard-meta {
+  margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.85);
+  border-top: 1px solid rgba(255,255,255,0.25); padding-top: 12px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.45);
+}
 
 /* ---- CTA banner ---- */
 .mbanner { background: var(--brown); color: #fff; padding: 48px 24px; text-align: center; }

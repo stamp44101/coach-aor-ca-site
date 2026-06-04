@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700&family=Trirong:ital,wght@0,400;0,500;0,600;1,500&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Sarabun:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700&family=Trirong:ital,wght@0,400;0,500;0,600;1,500&family=Noto+Sans+Thai:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Sarabun:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
 
 /* Your design-specific overrides. This file is NOT overwritten on re-clone. */
 
@@ -41,5 +41,28 @@ img[src*="05e1b97c"] {
     width: 1679px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
+  }
+}
+
+/* Booking section (last section): the design is 1440px wide and centred, so on
+   wider viewports a strip of cream is left to the RIGHT of the woman photo. Let
+   the photo's wrapper overflow visibly and stretch the photo to the viewport's
+   right edge so the section reads full-bleed instead of leaving blank space.
+   Scoped to the booking image via :has so nothing else is affected. */
+@media (min-width: 1441px) {
+  #booking .Izwocg:has(img[src*="07dea294"]),
+  #booking .H5qArQ:has(img[src*="07dea294"]),
+  #booking .PcHy7w:has(img[src*="07dea294"]) {
+    overflow: visible !important;
+    contain: none !important;
+  }
+  /* extend the photo rightward to the viewport edge. It starts ~967px from the
+     left of the centred frame; with centred content the right gap is (100vw-1440)/2,
+     so add that much width to reach the edge. */
+  #booking img[src*="07dea294"] {
+    width: calc(818px + (100vw - 1440px) / 2) !important;
+    max-width: none !important;
+    object-fit: cover !important;
+    object-position: left center !important;
   }
 }
