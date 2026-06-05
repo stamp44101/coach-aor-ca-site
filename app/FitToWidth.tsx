@@ -10,9 +10,11 @@ export default function FitToWidth({ base = 1440 }: { base?: number }) {
       const r = document.getElementById('root');
       if (!r) return;
       const w = document.documentElement.clientWidth;
-      // Below 768px the real mobile layout is shown (clone hidden), so only
-      // scale the desktop clone between 768px and the design width.
-      (r.style as unknown as { zoom: string }).zoom = w >= 768 && w < base ? String(w / base) : '';
+      // Below 768px the real mobile layout is shown (clone hidden). At >=768px
+      // scale the fixed 1440 design to the viewport width — both DOWN (tablet) and
+      // UP (wide desktop) — so it always fills edge-to-edge with no side gaps
+      // (cream strips beside the nav/hero, slate strip beside the footer, etc.).
+      (r.style as unknown as { zoom: string }).zoom = w >= 768 ? String(w / base) : '';
     };
     fit();
     window.addEventListener('resize', fit);
