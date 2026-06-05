@@ -38,34 +38,85 @@ html { scrollbar-gutter: stable; }
    panels + two cream tones + the brown services band).
    ────────────────────────────────────────────────────────────────── */
 
-.GDnEHQ[style*="background-color: rgb(255, 255, 255)"] {
-  box-shadow: 0 0 0 100vmax rgb(255, 255, 255);
-  clip-path: inset(0 -100vmax);
-}
+/* The first attempt was box-shadow + clip-path: inset(0 -100vmax). Per
+   CSS spec inset() rejects negative values, so the negative inset got
+   parsed as inset(0) and ended up CLIPPING the shadow to the box —
+   making the bug worse on one side (verified at the preview by
+   sampling pixels: right edge near-white where the shadow reached
+   before clip-path, left edge still cream).
 
-.GDnEHQ[style*="background-color: rgb(249, 247, 239)"] {
-  box-shadow: 0 0 0 100vmax rgb(249, 247, 239);
-  clip-path: inset(0 -100vmax);
-}
+   Switching to an absolutely-positioned pseudo-element. Each panel
+   gets `position: relative` plus a `::before` that's exactly the
+   panel's height (`inset: 0 -100vw`) and 100vw wider on each side,
+   sitting at z-index: -1 behind the content. Body's overflow-x:hidden
+   still crops the horizontal overhang so no scroll appears.
 
-.GDnEHQ[style*="background-color: rgb(249, 248, 240)"] {
-  box-shadow: 0 0 0 100vmax rgb(249, 248, 240);
-  clip-path: inset(0 -100vmax);
-}
+   Pseudo-element vs box-shadow: the pseudo is bounded vertically by
+   `top: 0; bottom: 0` (= exactly the host's height), so it physically
+   can't bleed into adjacent sections — unlike box-shadow which spread
+   in all directions and required clip-path containment. */
 
-section[style*="background-color: rgb(141, 110, 82)"] {
-  box-shadow: 0 0 0 100vmax rgb(141, 110, 82);
-  clip-path: inset(0 -100vmax);
-}
-
-section[style*="background-color: rgb(249, 247, 239)"] {
-  box-shadow: 0 0 0 100vmax rgb(249, 247, 239);
-  clip-path: inset(0 -100vmax);
-}
-
+.GDnEHQ[style*="background-color: rgb(255, 255, 255)"],
+.GDnEHQ[style*="background-color: rgb(249, 247, 239)"],
+.GDnEHQ[style*="background-color: rgb(249, 248, 240)"],
+section[style*="background-color: rgb(141, 110, 82)"],
+section[style*="background-color: rgb(249, 247, 239)"],
 section[style*="background-color: rgb(249, 248, 240)"] {
-  box-shadow: 0 0 0 100vmax rgb(249, 248, 240);
-  clip-path: inset(0 -100vmax);
+  position: relative;
+}
+
+.GDnEHQ[style*="background-color: rgb(255, 255, 255)"]::before {
+  content: "";
+  position: absolute;
+  inset: 0 -100vw;
+  background-color: rgb(255, 255, 255);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.GDnEHQ[style*="background-color: rgb(249, 247, 239)"]::before {
+  content: "";
+  position: absolute;
+  inset: 0 -100vw;
+  background-color: rgb(249, 247, 239);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.GDnEHQ[style*="background-color: rgb(249, 248, 240)"]::before {
+  content: "";
+  position: absolute;
+  inset: 0 -100vw;
+  background-color: rgb(249, 248, 240);
+  z-index: -1;
+  pointer-events: none;
+}
+
+section[style*="background-color: rgb(141, 110, 82)"]::before {
+  content: "";
+  position: absolute;
+  inset: 0 -100vw;
+  background-color: rgb(141, 110, 82);
+  z-index: -1;
+  pointer-events: none;
+}
+
+section[style*="background-color: rgb(249, 247, 239)"]::before {
+  content: "";
+  position: absolute;
+  inset: 0 -100vw;
+  background-color: rgb(249, 247, 239);
+  z-index: -1;
+  pointer-events: none;
+}
+
+section[style*="background-color: rgb(249, 248, 240)"]::before {
+  content: "";
+  position: absolute;
+  inset: 0 -100vw;
+  background-color: rgb(249, 248, 240);
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* Full-bleed hero background (the lily) edge-to-edge. The lily is clipped to the
