@@ -14,8 +14,13 @@ const IMG = {
   hero: A + '05e1b97cbad92d8c9accd67142277d86.jpg',
   about: A + '13531b2682173fa73aadddbf9af5444c.jpg',
   booking: A + '07dea294c8102a2a1d78f9b7cadf5c83.jpg',
-  qrWhatsapp: A + '344032e117c3c09b42d8ec2ea0be576a.png',
-  qrLine: A + '1bd3dfbafa33e78594a72356b1ff3144.png',
+  // The Canva-bundled QR pngs are 490×442 (WhatsApp) and 800×776 (LINE) —
+  // not square. The mobile CSS forces both into a 116×116 box, which made
+  // the WhatsApp QR look squished and noticeably smaller than LINE. Point
+  // both at the brand-trimmed square 540×540 files in the same assets
+  // folder so they render identically.
+  qrWhatsapp: A + 'whatsapp-qr.jpg',
+  qrLine: A + 'line-qr.png',
   s: [
     A + '99831c8bc1f4f5f71d11a29927ffacb9.jpg',
     A + 'ce973278bc7ab36150d5cf24b34b1c87.jpg',
