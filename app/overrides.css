@@ -2,15 +2,71 @@
 
 /* Your design-specific overrides. This file is NOT overwritten on re-clone. */
 
-/* Page background = the design's cream, so any thin edge gap left by the
-   scale-to-fit zoom blends in instead of showing the browser's dark default.
-   overflow-x:hidden kills the scrollbar-gutter sliver (seamless-sections doc,
-   step 5 / safety net). */
+/* Page background = the design's cream so any thin gap blends in.
+   overflow-x:hidden is required for the box-shadow trick below — the
+   shadows extend past the viewport edges and we need the body to crop
+   them so they don't trigger a horizontal scrollbar. */
 html, body, .clone-desktop {
   background: #f9f8f0 !important;
   overflow-x: hidden !important;
 }
 html { scrollbar-gutter: stable; }
+
+/* ──────────────────────────────────────────────────────────────────
+   Full-bleed section backgrounds (the real edge-bleed fix).
+
+   The Canva export hard-codes width: 1440px on every coloured "panel"
+   (`.GDnEHQ`). FitToWidth tries to scale the whole design up to the
+   viewport with CSS `zoom`, but Edge at 1897px viewport reports
+   `getComputedStyle(#root).zoom === "1"` — the script's value is being
+   dropped silently and the coloured panel stays 1440px wide. Stamp
+   sees this as cream/contrast strips on each side of the nav and
+   bottom sections.
+
+   Fix: each coloured panel gets `box-shadow: 0 0 0 100vmax <its
+   own bg colour>` so the colour paints outward to both viewport
+   edges, and `clip-path: inset(0 -100vmax)` constrains that paint
+   to the element's vertical bounds so it can't leak onto the
+   section above/below.
+
+   Combined with body's `overflow-x: hidden` this gives a perfect
+   full-bleed band at every coloured panel's vertical position,
+   regardless of whether FitToWidth's zoom actually fired, and
+   regardless of sub-pixel rounding at fractional zoom levels.
+
+   Each variant targets one bg colour the export uses (white nav/hero
+   panels + two cream tones + the brown services band).
+   ────────────────────────────────────────────────────────────────── */
+
+.GDnEHQ[style*="background-color: rgb(255, 255, 255)"] {
+  box-shadow: 0 0 0 100vmax rgb(255, 255, 255);
+  clip-path: inset(0 -100vmax);
+}
+
+.GDnEHQ[style*="background-color: rgb(249, 247, 239)"] {
+  box-shadow: 0 0 0 100vmax rgb(249, 247, 239);
+  clip-path: inset(0 -100vmax);
+}
+
+.GDnEHQ[style*="background-color: rgb(249, 248, 240)"] {
+  box-shadow: 0 0 0 100vmax rgb(249, 248, 240);
+  clip-path: inset(0 -100vmax);
+}
+
+section[style*="background-color: rgb(141, 110, 82)"] {
+  box-shadow: 0 0 0 100vmax rgb(141, 110, 82);
+  clip-path: inset(0 -100vmax);
+}
+
+section[style*="background-color: rgb(249, 247, 239)"] {
+  box-shadow: 0 0 0 100vmax rgb(249, 247, 239);
+  clip-path: inset(0 -100vmax);
+}
+
+section[style*="background-color: rgb(249, 248, 240)"] {
+  box-shadow: 0 0 0 100vmax rgb(249, 248, 240);
+  clip-path: inset(0 -100vmax);
+}
 
 /* Full-bleed hero background (the lily) edge-to-edge. The lily is clipped to the
    1440px design frame by ancestors that use overflow:hidden AND contain:paint
