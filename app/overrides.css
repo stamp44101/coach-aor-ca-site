@@ -2,6 +2,10 @@
 
 /* Your design-specific overrides. This file is NOT overwritten on re-clone. */
 
+/* Page background = the design's cream, so any thin edge gap left by the
+   scale-to-fit zoom blends in instead of showing the browser's dark default. */
+html, body, .clone-desktop { background: #f9f8f0 !important; }
+
 /* Full-bleed hero background (the lily) edge-to-edge. The lily is clipped to the
    1440px design frame by ancestors that use overflow:hidden AND contain:paint
    (Canva does this for perf — contain:paint clips painting even when overflow is
