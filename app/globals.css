@@ -4,6 +4,28 @@
 @import 'tailwindcss/theme.css' layer(theme);
 @import 'tailwindcss/utilities.css' layer(utilities);
 @source '../app/**/*.{ts,tsx}';
+/* Also scan the verbatim cloned markup + the rebuilt-section CSS so the
+   `bg-cream`, `text-cocoa`, `font-display-th`, … utilities used inside
+   `clone.html` / `clone.th.html` get JIT-generated. */
+@source '../app/clone.html';
+@source '../app/clone.th.html';
+
+/* Coach Aor CA brand tokens — mirrors the live coach-adi-landing palette
+   so the rebuilt Tailwind booking section matches the brand colours used
+   on the production site. */
+@theme {
+  --color-cream: #f9f7ef;
+  --color-cream-soft: #f5f1ed;
+  --color-cocoa: #674328;
+  --color-cocoa-soft: #856953;
+  --color-mocha: #82939b;
+
+  --font-display: "Playfair Display", "Times New Roman", serif;
+  --font-display-th: "Prompt", "Noto Sans Thai", system-ui, sans-serif;
+}
+
+.font-display    { font-family: var(--font-display); }
+.font-display-th { font-family: var(--font-display-th); font-style: normal; letter-spacing: -0.01em; }
 
 html, body { margin: 0; padding: 0; }
 
