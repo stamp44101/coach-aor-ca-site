@@ -25,27 +25,18 @@ html, body, .clone-desktop { background: #f9f8f0 !important; }
 }
 
 img[src*="05e1b97c"] {
-  /* Match the original hero photo: 116.6vw wide, stretched to fill (object-fit:
-     fill), centred slightly right of viewport — so the lily reads large and
-     balanced instead of small and right-heavy. Height clips it to the hero band. */
-  width: 116.6vw !important;
+  /* The whole 1440 design is scaled to the viewport by FitToWidth, so size the
+     lily to the design frame (1679px = 116.6% of 1440) and use object-fit:cover
+     so it always keeps its aspect ratio — never stretched/squished. It fills the
+     full width after the zoom, with no distortion. */
+  width: 1679px !important;
   max-width: none !important;
   pointer-events: none !important;
   height: 937px !important;
-  object-fit: fill !important;
+  object-fit: cover !important;
+  object-position: center 30% !important;
   left: 50% !important;
-  transform: translateX(calc(-50% - 90px + 6.2vw)) !important;
-}
-
-/* On scaled-down (mobile/tablet) viewports the page is zoomed to fit, so size
-   the hero photo to the 1440 frame (116.6% = 1679px) instead of 100vw — it then
-   fills the width after zoom, matching the desktop look (large, balanced lily). */
-@media (max-width: 1439px) {
-  img[src*="05e1b97c"] {
-    width: 1679px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-  }
+  transform: translateX(-50%) !important;
 }
 
 /* Booking section (last section): the design is 1440px wide and centred, so on
