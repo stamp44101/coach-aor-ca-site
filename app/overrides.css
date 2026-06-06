@@ -304,38 +304,12 @@ img[src*="05e1b97c"] {
   }
 }
 
-/* 9. "Line Official : @coachaorca" — was an italic text link
-      with hover:underline, completely invisible on touch as a
-      CTA. Render it as a soft pill with a min 44px tap target
-      so people understand it's tappable. */
-#booking [class*="aspect-"] > div.absolute.flex > p:last-of-type {
-  font-size: 0 !important; /* hide the original italic p */
-}
+/* 9. "Line Official : @coachaorca" — reverted to the original
+      italic text link per customer review. Just inherit colour
+      (so it stays brown rather than browser-default blue). */
 #booking [class*="aspect-"] > div.absolute.flex > p:last-of-type a {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  min-height: 44px !important;
-  padding: 10px 22px !important;
-  font-size: 15px !important;
-  font-style: normal !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.02em !important;
-  color: #ffffff !important;
-  background: #06c755 !important; /* LINE brand green */
-  border-radius: 999px !important;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.08) !important;
-  transition: filter 0.18s ease !important;
-}
-#booking [class*="aspect-"] > div.absolute.flex > p:last-of-type a:hover,
-#booking [class*="aspect-"] > div.absolute.flex > p:last-of-type a:focus-visible {
-  filter: brightness(0.94) !important;
-}
-@media (min-width: 1024px) {
-  #booking [class*="aspect-"] > div.absolute.flex > p:last-of-type a {
-    font-size: 16px !important;
-    padding: 12px 26px !important;
-  }
+  color: inherit !important;
+  text-decoration: none !important;
 }
 
 /* 10. Tighten the gap stack in the right column so the now-
@@ -345,6 +319,86 @@ img[src*="05e1b97c"] {
     gap: 18px !important;
     padding-right: 28px !important;
     padding-bottom: 32px !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Full-section background image. Replaces the flat #f9f7ef cream
+   the section had defaulted to. The original photo column on the
+   right still sits on top — the bg shows through on the left half
+   behind the form and bleeds underneath the photo column's right
+   half. */
+#booking {
+  background-color: transparent !important;
+  background-image: url('/assets/last-section-bg.jpg') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Cross-language type-size parity. Customer noticed that
+   toggling EN ↔ TH made the same elements feel different sizes.
+   That's because the EN markup uses `font-display italic`
+   (Playfair Display) while the TH markup uses
+   `font-display-th font-medium` (Prompt). Their x-heights and
+   line-heights differ noticeably at the same Tailwind text-*
+   class — Prompt sets visibly larger than Playfair italic.
+
+   Anchor the Booking & Consultation H2 at a fixed pixel size
+   per breakpoint so EN and TH read at the same physical size
+   regardless of which face is rendering. Same for the right-
+   column "Ready to start…" headline — it's font-display italic
+   in EN, but for TH the markup falls back to the body font
+   which is heavier per glyph. */
+#booking h2 {
+  font-size: 36px !important;
+  line-height: 1.12 !important;
+}
+@media (min-width: 768px) {
+  #booking h2 {
+    font-size: 44px !important;
+    line-height: 1.1 !important;
+  }
+}
+@media (min-width: 1024px) {
+  #booking h2 {
+    font-size: 52px !important;
+  }
+}
+/* TH Prompt sets larger than Playfair at the same px — pull
+   it back a hair so the two languages occupy the same column
+   height. */
+:root[lang="th"] #booking h2,
+:lang(th) #booking h2 {
+  font-size: 32px !important;
+}
+@media (min-width: 768px) {
+  :lang(th) #booking h2 {
+    font-size: 40px !important;
+  }
+}
+@media (min-width: 1024px) {
+  :lang(th) #booking h2 {
+    font-size: 46px !important;
+  }
+}
+/* Right-column headline — same EN/TH parity. */
+#booking [class*="aspect-"] > div.absolute.flex > p:first-of-type {
+  font-size: 20px !important;
+}
+@media (min-width: 1024px) {
+  #booking [class*="aspect-"] > div.absolute.flex > p:first-of-type {
+    font-size: 24px !important;
+  }
+}
+:root[lang="th"] #booking [class*="aspect-"] > div.absolute.flex > p:first-of-type,
+:lang(th) #booking [class*="aspect-"] > div.absolute.flex > p:first-of-type {
+  font-size: 18px !important;
+}
+@media (min-width: 1024px) {
+  :lang(th) #booking [class*="aspect-"] > div.absolute.flex > p:first-of-type {
+    font-size: 22px !important;
   }
 }
 

@@ -14,7 +14,7 @@ export default function Page() {
   const bodyHtml = readFileSync(join(process.cwd(), 'app', 'clone.html'), 'utf8');
   return (
     <>
-      <div className="clone-desktop" dangerouslySetInnerHTML={{ __html: bodyHtml }} />
+      <div className="clone-desktop" lang="en" dangerouslySetInnerHTML={{ __html: bodyHtml }} />
       <MobileSite lang="en" />
     </>
   );
