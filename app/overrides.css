@@ -152,24 +152,11 @@ img[src*="05e1b97c"] {
   transform: translateX(-50%) !important;
 }
 
-/* Booking section: stamp's verbatim coach-aor-landing markup keeps
-   the mx-auto max-w-7xl px-6 md:px-12 container, which would leave
-   ~320px of cream on each side at 1920×1080 — the same edge strips
-   he's been pointing at all morning. Unlock the container so the
-   grid uses the full viewport: photo column on the right touches
-   the viewport's right edge; form column on the left gets internal
-   padding so it doesn't slam against the left edge. Mobile keeps
-   the original px-6 because the section is single-column there. */
-@media (min-width: 768px) {
-  #booking > div {
-    max-width: none !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-  /* form col (first DOM child, even though order-2 md:order-1 makes
-     it visually right on mobile and left on desktop). */
-  #booking > div > div:first-child {
-    padding-left: clamp(24px, 6vw, 96px);
-    padding-right: clamp(16px, 2vw, 32px);
-  }
-}
+/* Booking section: kept exactly as stamp extracted from
+   coach-aor-landing — max-w-7xl + px-6 md:px-12 container
+   intact, no layout overrides. The only nudge is for link
+   colour: Tailwind's preflight is disabled in this project
+   (see globals.css) so <a> falls back to the browser default
+   (blue + underline). Restore the inherited brown the live
+   site shows by force-inheriting colour. */
+#booking a { color: inherit; }
