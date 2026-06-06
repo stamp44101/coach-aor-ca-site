@@ -2,43 +2,46 @@
   <div class="relative z-10 mx-auto max-w-7xl px-6 md:px-12 grid md:grid-cols-2 gap-12 md:gap-16 items-start">
     <div class="order-2 md:order-1">
       <h2 class="font-display-th font-medium text-balance text-4xl md:text-5xl lg:text-6xl text-cocoa leading-[1.1]" style="color: #674328;">การจองคิวปรึกษา</h2>
-      <form class="mt-10 space-y-5" action="#" method="post" aria-label="Booking request">
-        <label class="block">
-          <span class="text-[11px] tracking-[0.22em] uppercase text-cocoa-soft block mb-2" style="color: #856953;">ชื่อ</span>
-          <input type="text" name="name" required class="w-full bg-cream-soft border border-cocoa/15 focus:border-cocoa outline-none px-4 py-3 text-cocoa rounded-[3px]" style="background-color: #f5f1ed; color: #674328; border-color: rgba(103,67,40,0.15);" />
-        </label>
-        <label class="block">
-          <span class="text-[11px] tracking-[0.22em] uppercase text-cocoa-soft block mb-2" style="color: #856953;">อีเมล</span>
-          <input type="email" name="email" required class="w-full bg-cream-soft border border-cocoa/15 focus:border-cocoa outline-none px-4 py-3 text-cocoa rounded-[3px]" style="background-color: #f5f1ed; color: #674328; border-color: rgba(103,67,40,0.15);" />
-        </label>
-        <label class="block">
-          <span class="text-[11px] tracking-[0.22em] uppercase text-cocoa-soft block mb-2" style="color: #856953;">ข้อความ</span>
-          <textarea name="message" rows="4" required class="w-full bg-cream-soft border border-cocoa/15 focus:border-cocoa outline-none px-4 py-3 text-cocoa rounded-[3px] resize-none" style="background-color: #f5f1ed; color: #674328; border-color: rgba(103,67,40,0.15);"></textarea>
-        </label>
-        <button type="submit" class="mt-2 w-full px-9 py-4 text-sm md:text-[15px] tracking-[0.24em] uppercase text-cream bg-cocoa hover:bg-cocoa-soft transition-colors rounded-full" style="background-color: #674328; color: #f9f7ef;">ส่ง</button>
-      </form>
+      <div class="mt-8 p-6 md:p-7 rounded-md" style="background-color: #ffffff; border: 1px solid rgba(103,67,40,0.12); box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+        <form class="space-y-5" action="#" method="post" aria-label="Booking request">
+          <label class="block">
+            <span class="text-[11px] tracking-[0.22em] uppercase text-cocoa-soft block mb-2" style="color: #856953;">ชื่อ</span>
+            <input type="text" name="name" required class="w-full outline-none px-4 py-3 rounded-[4px]" style="background-color: #ffffff; color: #674328; border: 1px solid rgba(103,67,40,0.22);" />
+          </label>
+          <label class="block">
+            <span class="text-[11px] tracking-[0.22em] uppercase text-cocoa-soft block mb-2" style="color: #856953;">อีเมล</span>
+            <input type="email" name="email" required class="w-full outline-none px-4 py-3 rounded-[4px]" style="background-color: #ffffff; color: #674328; border: 1px solid rgba(103,67,40,0.22);" />
+          </label>
+          <label class="block">
+            <span class="text-[11px] tracking-[0.22em] uppercase text-cocoa-soft block mb-2" style="color: #856953;">ข้อความ</span>
+            <textarea name="message" rows="4" required class="w-full outline-none px-4 py-3 rounded-[4px] resize-none" style="background-color: #ffffff; color: #674328; border: 1px solid rgba(103,67,40,0.22);"></textarea>
+          </label>
+          <button type="submit" class="mt-2 w-full px-9 py-4 text-sm md:text-[15px] tracking-[0.24em] uppercase transition-colors rounded-full" style="background-color: #856953; color: #f9f7ef;">ส่ง</button>
+          <p class="text-center text-[10px] italic" style="color: rgba(133,105,83,0.65);">ข้อมูลของคุณถูกใช้เพื่อติดต่อกลับเท่านั้น</p>
+        </form>
+      </div>
     </div>
-    <div class="order-1 md:order-2 relative aspect-[3/4] md:aspect-[4/5] overflow-hidden rounded-[2px]">
-      <img alt="Coach Aor" src="/assets/07dea294c8102a2a1d78f9b7cadf5c83.jpg" class="absolute inset-0 w-full h-full object-cover" style="object-position: 20% center;" />
+    <div class="order-1 md:order-2 relative aspect-[5/4] md:aspect-[5/4] overflow-hidden rounded-[2px]">
+      <img alt="Coach Aor" src="/assets/07dea294c8102a2a1d78f9b7cadf5c83.jpg" class="absolute inset-0 w-full h-full object-cover" style="object-position: 80% center;" />
       <div aria-hidden="true" class="absolute inset-0" style="background: rgba(255,255,255,0.25);"></div>
-      <div aria-hidden="true" class="absolute inset-y-0 right-0 w-[60%] md:w-[55%]" style="background: linear-gradient(to left, #f9f7ef, rgba(249,247,239,0.85), transparent);"></div>
-      <div class="absolute inset-y-0 right-0 w-[60%] md:w-[50%] flex flex-col items-center justify-end text-center gap-5 md:gap-6 p-4 md:p-7">
-        <p class="text-cocoa text-base md:text-lg lg:text-xl leading-snug text-balance" style="color: #674328;">สนใจนัดหมายจองคิวเซสชั่นกับโค้ชอ้อ</p>
+      <div aria-hidden="true" class="absolute inset-y-0 left-0 w-[60%] md:w-[60%]" style="background: linear-gradient(to right, #f9f7ef, rgba(249,247,239,0.92), rgba(249,247,239,0.7), transparent);"></div>
+      <div class="absolute inset-y-0 left-0 w-[60%] md:w-[58%] flex flex-col items-center justify-center text-center gap-4 md:gap-5 p-4 md:p-7">
+        <p class="text-base md:text-lg lg:text-xl leading-snug text-balance" style="color: #674328;">สนใจนัดหมายจองคิวเซสชั่นกับโค้ชอ้อ</p>
         <div class="flex gap-3 md:gap-4" style="mix-blend-mode: multiply;">
           <div class="text-center">
             <div class="relative w-20 h-20 md:w-24 md:h-24">
               <img alt="Scan to message Coach Aor on WhatsApp" src="/assets/whatsapp-qr.jpg" class="absolute inset-0 w-full h-full object-contain" />
             </div>
-            <p class="mt-1.5 text-[10px] md:text-[11px] tracking-[0.18em] uppercase text-cocoa" style="color: #674328;">WhatsApp</p>
+            <p class="mt-1.5 text-[10px] md:text-[11px] tracking-[0.18em] uppercase" style="color: #674328;">WhatsApp</p>
           </div>
           <div class="text-center">
             <div class="relative w-20 h-20 md:w-24 md:h-24">
               <img alt="Scan to add Coach Aor on LINE Official" src="/assets/line-qr.png" class="absolute inset-0 w-full h-full object-contain" />
             </div>
-            <p class="mt-1.5 text-[10px] md:text-[11px] tracking-[0.18em] uppercase text-cocoa" style="color: #674328;">LINE Official</p>
+            <p class="mt-1.5 text-[10px] md:text-[11px] tracking-[0.18em] uppercase" style="color: #674328;">LINE Official</p>
           </div>
         </div>
-        <p class="text-cocoa text-sm md:text-base italic font-display" style="color: #674328;"><a href="https://lin.ee/ZVRHOhSu" target="_blank" rel="noopener noreferrer" class="hover:underline">Line Official : @coachaorca</a></p>
+        <p class="text-sm md:text-base font-display italic"><a href="https://lin.ee/ZVRHOhSu" target="_blank" rel="noopener noreferrer" style="color: #674328; text-decoration: none;">Line Official : @coachaorca</a></p>
       </div>
     </div>
   </div>
