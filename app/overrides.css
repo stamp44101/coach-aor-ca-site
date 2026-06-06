@@ -174,3 +174,14 @@ img[src*="05e1b97c"] {
   --spacing: 4px;          /* default 0.25rem → 4px at 16px root */
   --container-7xl: 1280px; /* default 80rem  → 1280px at 16px root */
 }
+/* The verbatim grid uses `items-stretch md:items-end`. With the
+   form column shorter than the aspect-[4/5] photo column, items-end
+   pushes the heading + form down so its bottom aligns with the
+   photo's bottom — stamp's "too low" complaint. Flip to top
+   alignment so the heading rides the top of the section and the
+   photo's empty bottom space carries any height difference. */
+@media (min-width: 768px) {
+  #booking > div {
+    align-items: start !important;
+  }
+}
