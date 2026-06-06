@@ -174,39 +174,18 @@ img[src*="05e1b97c"] {
   --spacing: 4px;          /* default 0.25rem → 4px at 16px root */
   --container-7xl: 1280px; /* default 80rem  → 1280px at 16px root */
 }
-/* The verbatim grid uses `items-stretch md:items-end`. With the
-   form column shorter than the aspect-[4/5] photo column, items-end
-   pushes the heading + form down so its bottom aligns with the
-   photo's bottom — stamp's "too low" complaint. Flip to top
-   alignment so the heading rides the top of the section. The form
-   column itself stretches to match the photo column's height, and
-   the Send button uses margin-top: auto to drop to the bottom of
-   the column — that balances the left/right visual weight without
-   ballooning the message textarea to absurd sizes. */
+/* Flip the verbatim grid's `items-stretch md:items-end` to top
+   alignment so the heading rides the top of the section. The
+   form sits at its natural content height — Send button follows
+   directly after the textarea (stamp's "Send button must hug the
+   form, not float at the bottom" feedback). Photo column is taller
+   so cream space appears below the form. */
 @media (min-width: 768px) {
   #booking > div {
     align-items: start !important;
   }
-  /* form column stretches to the row's height */
-  #booking > div > div:first-child {
-    align-self: stretch !important;
-    display: flex !important;
-    flex-direction: column !important;
-  }
-  #booking form {
-    flex: 1 1 auto !important;
-    display: flex !important;
-    flex-direction: column !important;
-  }
-  /* moderate textarea — not a giant blob */
   #booking form textarea {
     min-height: 120px !important;
-  }
-  /* Send button drifts to the bottom of the form column, balancing
-     the photo's bottom edge on the right without forcing fields to
-     stretch. */
-  #booking form button[type="submit"] {
-    margin-top: auto !important;
   }
 }
 
