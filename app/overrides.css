@@ -339,6 +339,23 @@ img[src*="05e1b97c"] {
   display: none !important;
 }
 
+/* The photo column also has its own <img> (booking-portrait.jpg)
+   duplicating the woman who's already in the section background.
+   Drop it — the bg now does the job. The photo column becomes
+   transparent; only the absolute contact group (text + QRs +
+   LINE link) shows on top of the section background. */
+#booking [class*="aspect-"] > img {
+  display: none !important;
+}
+
+/* Soft white wash behind the contact group only so the brown
+   text + dark QR squares stay readable against the bg image's
+   wood / cream area. Faint enough not to register as a "frame"
+   or "fade" — closer to a translucent ground than an overlay. */
+#booking [class*="aspect-"] > div.absolute.flex {
+  background: rgba(255, 255, 255, 0.32) !important;
+}
+
 /* ──────────────────────────────────────────────────────────────
    Cross-language type-size parity. Customer noticed that
    toggling EN ↔ TH made the same elements feel different sizes.
