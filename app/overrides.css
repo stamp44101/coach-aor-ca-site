@@ -154,9 +154,23 @@ img[src*="05e1b97c"] {
 
 /* Booking section: kept exactly as stamp extracted from
    coach-aor-landing — max-w-7xl + px-6 md:px-12 container
-   intact, no layout overrides. The only nudge is for link
-   colour: Tailwind's preflight is disabled in this project
-   (see globals.css) so <a> falls back to the browser default
-   (blue + underline). Restore the inherited brown the live
-   site shows by force-inheriting colour. */
+   intact. Two scoped fixes:
+   1. Link colour. Tailwind's preflight is disabled in this
+      project (see globals.css) so <a> falls back to the browser
+      default (blue + underline). Force-inherit so the brown of
+      the parent text shows through, like the live site.
+   2. Rem rescue. clone.css sets html { font-size: 62.5% } so
+      1rem = 10px and every Tailwind v4 rem-based token
+      (--spacing default 0.25rem, --container-7xl default 80rem)
+      computes to 62.5% of its intended pixel size. Side effects
+      stamp could see: section was 615px tall vs the live site's
+      924px, max-w-7xl was 800px vs the expected 1280px, padding
+      and gaps all shrank. Pin the two tokens to absolute px so
+      the verbatim Tailwind classes land at their intended sizes
+      inside #booking only — global Tailwind elsewhere is
+      untouched. */
 #booking a { color: inherit; }
+#booking {
+  --spacing: 4px;          /* default 0.25rem → 4px at 16px root */
+  --container-7xl: 1280px; /* default 80rem  → 1280px at 16px root */
+}
