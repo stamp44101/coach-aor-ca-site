@@ -189,13 +189,12 @@ img[src*="05e1b97c"] {
   }
 }
 
-/* Top + bottom padding nudges per stamp's feedback:
-   - top was py-28 (= 112px) which read too generous → zero it.
-   - bottom was 0 which was too tight against the slate footer
-     → small 16px breath. */
+/* Top + bottom padding both zeroed — stamp wants the booking
+   section to hug the nav above and the slate footer below with
+   no cream gap. */
 #booking {
   padding-top: 0 !important;
-  padding-bottom: 1rem !important;
+  padding-bottom: 0 !important;
 }
 
 /* Send pill was rendering with the browser default <button>
