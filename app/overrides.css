@@ -197,6 +197,157 @@ img[src*="05e1b97c"] {
   padding-bottom: 0 !important;
 }
 
+/* ──────────────────────────────────────────────────────────────
+   Accessibility + readability optimisation pass (per customer
+   review). The target audience is women 30-55 — most will be
+   reading on a phone or laptop in normal indoor light, many
+   with presbyopia starting to bite. Tighten up the type scale,
+   make the QRs scan-friendly, and turn the LINE Official link
+   into something that obviously looks tappable.
+   ────────────────────────────────────────────────────────────── */
+
+/* 1. Form labels — 11px → 13px mobile / 14px desktop. The
+      original 0.22em tracking made them genuinely hard to read
+      so tone it down too. */
+#booking form label > span {
+  font-size: 13px !important;
+  letter-spacing: 0.14em !important;
+}
+@media (min-width: 768px) {
+  #booking form label > span { font-size: 14px !important; }
+}
+
+/* 2. Form input/textarea text — explicit 16px so iOS Safari
+      doesn't auto-zoom on focus (forces a layout shift that
+      reads as broken) and the value stays comfortable to read
+      while typing. Bump padding a touch so the tap target
+      stays >= 44px. */
+#booking form input,
+#booking form textarea {
+  font-size: 16px !important;
+  padding: 14px 16px !important;
+}
+
+/* 3. Send button — primary CTA on the section, but its text was
+      14-15px. Bump to 16px / 17px, keep the tracking. */
+#booking form button[type="submit"] {
+  font-size: 16px !important;
+  padding-block: 16px !important;
+  letter-spacing: 0.2em !important;
+}
+@media (min-width: 768px) {
+  #booking form button[type="submit"] { font-size: 17px !important; }
+}
+
+/* 4. Visible focus rings for keyboard nav and accessible UX.
+      `focus:border-cocoa` alone was a 1px swap; replace with a
+      proper 2px outline + offset that meets WCAG 2.4.7. */
+#booking form :where(input, textarea, button):focus-visible {
+  outline: 2px solid #674328 !important;
+  outline-offset: 2px !important;
+}
+
+/* 5. Right-column headline — "Ready to start your transformation
+      / with Coach Aor?". Was 16/18/20px which lost to the photo;
+      bump to 20/22/26 with tighter line-height so it actually
+      reads as a call to scan the QR below. */
+#booking [class*="aspect-"] > div.absolute.flex > p:first-of-type {
+  font-size: 20px !important;
+  line-height: 1.35 !important;
+}
+@media (min-width: 1024px) {
+  #booking [class*="aspect-"] > div.absolute.flex > p:first-of-type {
+    font-size: 24px !important;
+  }
+}
+
+/* 6. QR codes — was 80×80 / 96×96 px which is below the
+      120px floor that comfortable arm's-length scanning needs.
+      Bump to 120px mobile / 144px desktop. */
+#booking [class*="aspect-"] [class*="md:w-24"] {
+  width: 120px !important;
+  height: 120px !important;
+}
+@media (min-width: 1024px) {
+  #booking [class*="aspect-"] [class*="md:w-24"] {
+    width: 144px !important;
+    height: 144px !important;
+  }
+}
+
+/* 7. QR contrast — the original markup uses
+      mix-blend-mode: multiply so the QR's white background
+      blends with the cream wash, which is pretty but reduces
+      camera-side contrast. Drop the blend mode and put each
+      QR on a clean white card with a hairline border so the
+      camera locks on instantly. */
+#booking [style*="mix-blend-mode"] {
+  mix-blend-mode: normal !important;
+}
+#booking [class*="aspect-"] [class*="md:w-24"] {
+  background: #ffffff !important;
+  padding: 6px !important;
+  border-radius: 6px !important;
+  box-shadow: 0 1px 2px rgba(103, 67, 40, 0.08) !important;
+}
+
+/* 8. QR captions (WhatsApp / LINE Official) were 10/11px —
+      barely readable next to the now-larger QRs. 12/13px. */
+#booking [class*="aspect-"] .text-center > p {
+  font-size: 12px !important;
+  letter-spacing: 0.16em !important;
+  margin-top: 10px !important;
+}
+@media (min-width: 1024px) {
+  #booking [class*="aspect-"] .text-center > p {
+    font-size: 13px !important;
+  }
+}
+
+/* 9. "Line Official : @coachaorca" — was an italic text link
+      with hover:underline, completely invisible on touch as a
+      CTA. Render it as a soft pill with a min 44px tap target
+      so people understand it's tappable. */
+#booking [class*="aspect-"] > div.absolute.flex > p:last-of-type {
+  font-size: 0 !important; /* hide the original italic p */
+}
+#booking [class*="aspect-"] > div.absolute.flex > p:last-of-type a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 44px !important;
+  padding: 10px 22px !important;
+  font-size: 15px !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+  color: #ffffff !important;
+  background: #06c755 !important; /* LINE brand green */
+  border-radius: 999px !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08) !important;
+  transition: filter 0.18s ease !important;
+}
+#booking [class*="aspect-"] > div.absolute.flex > p:last-of-type a:hover,
+#booking [class*="aspect-"] > div.absolute.flex > p:last-of-type a:focus-visible {
+  filter: brightness(0.94) !important;
+}
+@media (min-width: 1024px) {
+  #booking [class*="aspect-"] > div.absolute.flex > p:last-of-type a {
+    font-size: 16px !important;
+    padding: 12px 26px !important;
+  }
+}
+
+/* 10. Tighten the gap stack in the right column so the now-
+       larger QR + headline still fit at desktop. */
+@media (min-width: 768px) {
+  #booking [class*="aspect-"] > div.absolute.flex {
+    gap: 18px !important;
+    padding-right: 28px !important;
+    padding-bottom: 32px !important;
+  }
+}
+
 /* Send pill was rendering with the browser default <button>
    border (Tailwind's preflight is off on this project so the UA
    border leaks through). Strip it so the pill reads as a solid
