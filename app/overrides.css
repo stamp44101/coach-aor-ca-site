@@ -275,20 +275,13 @@ img[src*="05e1b97c"] {
   }
 }
 
-/* 7. QR contrast — the original markup uses
-      mix-blend-mode: multiply so the QR's white background
-      blends with the cream wash, which is pretty but reduces
-      camera-side contrast. Drop the blend mode and put each
-      QR on a clean white card with a hairline border so the
-      camera locks on instantly. */
+/* 7. QR contrast — drop the original mix-blend: multiply so the
+      QR's natural white jpg background stays white and the phone
+      camera locks on instantly. No extra white card, no border,
+      no shadow — stamp said decorations on the photo read
+      cluttered. The QR jpg's own white margin is enough.  */
 #booking [style*="mix-blend-mode"] {
   mix-blend-mode: normal !important;
-}
-#booking [class*="aspect-"] [class*="md:w-24"] {
-  background: #ffffff !important;
-  padding: 6px !important;
-  border-radius: 6px !important;
-  box-shadow: 0 1px 2px rgba(103, 67, 40, 0.08) !important;
 }
 
 /* 8. QR captions (WhatsApp / LINE Official) were 10/11px —
@@ -334,6 +327,16 @@ img[src*="05e1b97c"] {
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
+}
+
+/* Photo column's two original decorative layers — the bg-white/25
+   overall lighten and the cream-wash gradient over the right
+   60-55%. Stamp wants the photo clean ("รูปมันโอเค"), no haze, no
+   fade, no overlays. Hide the two aria-hidden decorative divs and
+   let the photo render as captured. The text + QRs still sit on
+   top in their absolute container.   */
+#booking [class*="aspect-"] > div[aria-hidden="true"] {
+  display: none !important;
 }
 
 /* ──────────────────────────────────────────────────────────────
