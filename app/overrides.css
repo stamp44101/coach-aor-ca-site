@@ -348,13 +348,10 @@ img[src*="05e1b97c"] {
   display: none !important;
 }
 
-/* Soft white wash behind the contact group only so the brown
-   text + dark QR squares stay readable against the bg image's
-   wood / cream area. Faint enough not to register as a "frame"
-   or "fade" — closer to a translucent ground than an overlay. */
-#booking [class*="aspect-"] > div.absolute.flex {
-  background: rgba(255, 255, 255, 0.32) !important;
-}
+/* No partial white wash on the contact group — stamp said that
+   creates a visible "cut" against the unwashed photo. The bg
+   image's natural wood/cream behind the contact area is enough
+   contrast for the brown text. */
 
 /* ──────────────────────────────────────────────────────────────
    Cross-language type-size parity. Customer noticed that
