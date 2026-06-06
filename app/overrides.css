@@ -180,9 +180,9 @@ img[src*="05e1b97c"] {
    photo's bottom — stamp's "too low" complaint. Flip to top
    alignment so the heading rides the top of the section. The form
    column itself stretches to match the photo column's height, and
-   the form inside it flexes so the button sits near the bottom —
-   that balances the visual weight of the left column with the
-   tall photo on the right. */
+   the Send button uses margin-top: auto to drop to the bottom of
+   the column — that balances the left/right visual weight without
+   ballooning the message textarea to absurd sizes. */
 @media (min-width: 768px) {
   #booking > div {
     align-items: start !important;
@@ -193,30 +193,36 @@ img[src*="05e1b97c"] {
     display: flex !important;
     flex-direction: column !important;
   }
-  /* the form fills the column; fields top, button bottom */
   #booking form {
     flex: 1 1 auto !important;
     display: flex !important;
     flex-direction: column !important;
   }
-  /* let the message textarea absorb the extra vertical space so
-     the form pads itself out to match the photo height without
-     leaving an awkward cream gap above the Send button. */
-  #booking form > label:nth-of-type(3) {
-    flex: 1 1 auto !important;
-    display: flex !important;
-    flex-direction: column !important;
-  }
+  /* moderate textarea — not a giant blob */
   #booking form textarea {
-    flex: 1 1 auto !important;
-    min-height: 160px !important;
+    min-height: 120px !important;
+  }
+  /* Send button drifts to the bottom of the form column, balancing
+     the photo's bottom edge on the right without forcing fields to
+     stretch. */
+  #booking form button[type="submit"] {
+    margin-top: auto !important;
   }
 }
 
-/* Close the cream gap between the booking section and the footer
-   below it — stamp said it reads too thick. py-28 on the section
-   gives 112px bottom padding by default; zero it out so the
-   booking's last row hugs the slate footer. */
+/* Top + bottom padding nudges per stamp's feedback:
+   - top was py-28 (= 112px) which read too generous → zero it.
+   - bottom was 0 which was too tight against the slate footer
+     → small 16px breath. */
 #booking {
-  padding-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 1rem !important;
+}
+
+/* Send pill was rendering with the browser default <button>
+   border (Tailwind's preflight is off on this project so the UA
+   border leaks through). Strip it so the pill reads as a solid
+   tan shape with no dark ring. */
+#booking form button[type="submit"] {
+  border: none !important;
 }
