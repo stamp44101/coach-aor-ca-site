@@ -103,7 +103,7 @@
   border-radius: 999px; font-size: 17px; font-weight: 600; letter-spacing: .02em;
   cursor: pointer; border: none;
 }
-.mbtn-blue { background: var(--ink); color: #fff; }
+.msite .mbtn-blue { background: var(--ink); color: #fff; }
 .mbtn-ghost { background: transparent; color: var(--brown); border: 1.5px solid var(--brown); }
 .mbtn-tan { background: var(--tan); color: #fff; width: 100%; margin-top: 8px; }
 .mbtn:active { filter: brightness(.94); }
