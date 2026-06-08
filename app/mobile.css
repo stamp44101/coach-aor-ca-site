@@ -116,7 +116,7 @@
 .mhero-inner .mtag {
   margin: 22px 0 0;
   max-width: 22em;
-  font-size: 14.5px; color: var(--blue); text-wrap: balance;
+  font-size: 14.5px; color: var(--blue);
 }
 
 /* ---- buttons (touch targets >= 48px) ---- */
