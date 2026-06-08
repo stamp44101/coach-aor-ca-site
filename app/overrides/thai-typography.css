@@ -1,0 +1,36 @@
+/* ──────────────────────────────────────────────────────────────────
+   Thai typography lock-down — per stamp: ตัวใหญ่ Kanit · ตัวเล็ก Noto Sans Thai
+
+   Without this, two failure modes can show up on Thai-language render:
+   1. Any element whose declared font-family falls back to system Thai
+      (e.g. clonner-form uses "system-ui" → on Windows that's Segoe UI for
+      Latin but Leelawadee/Sarabun/Cordia for Thai glyphs, which all have
+      the looped "head" letterforms Stamp doesn't want).
+   2. Anywhere an inline-styled element doesn't specify Thai-safe fonts.
+
+   Strategy: cascade Noto Sans Thai as the Thai base, escalate to Kanit
+   for "large" elements (headings + Tailwind text-4xl/5xl/6xl classes used
+   in clone.html). Scoped to :lang(th) so EN is unaffected.
+   ────────────────────────────────────────────────────────────────── */
+
+:lang(th) {
+  font-family: "Noto Sans Thai", system-ui, -apple-system, sans-serif;
+}
+
+/* "Large" text — headings + verbatim Canva Tailwind size classes */
+:lang(th) :is(h1, h2, h3, h4),
+:lang(th) [class*="text-3xl"],
+:lang(th) [class*="text-4xl"],
+:lang(th) [class*="text-5xl"],
+:lang(th) [class*="text-6xl"],
+:lang(th) [class*="text-7xl"] {
+  font-family: "Kanit", "Noto Sans Thai", sans-serif;
+}
+
+/* clonner-form (cloned Canva contact form) hard-codes system-ui. Override
+   to Noto Sans Thai under :lang(th) so Send button + field labels render
+   in the loopless Thai face. */
+:lang(th) .clonner-form,
+:lang(th) .clonner-form * {
+  font-family: "Noto Sans Thai", system-ui, sans-serif;
+}

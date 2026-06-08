@@ -21,3 +21,7 @@
 /* Booking & Consultation section — link colour, rem rescue, layout, type sizes,
    accessibility/readability pass, full-section bg image, EN↔TH font parity. */
 @import './overrides/booking.css';
+
+/* Thai-language typography lock-down — Kanit for large, Noto Sans Thai for
+   small, defensive against system-font fallback picking a looped Thai face. */
+@import './overrides/thai-typography.css';
