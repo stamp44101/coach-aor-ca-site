@@ -16,7 +16,9 @@ export default function MobileSite({ lang }: { lang: Lang }) {
   const headFont = lang === 'th' ? "var(--font-kanit), 'Kanit', sans-serif" : "'Playfair Display', serif";
   // The hero headline is English on BOTH languages (matching the desktop clone),
   // so always render it in the elegant Playfair serif — not Kanit on /th.
-  const heroFont = "'Playfair Display', serif";
+  // PREVIEW: try the desktop's Canva-bundled italic serif (YAFdJhem5V8_1, self-
+  // hosted by clone.css) so the mobile hero matches the desktop visually.
+  const heroFont = "YAFdJhem5V8_1, 'Playfair Display', serif";
 
   return (
     <div className="msite" lang={lang}>
