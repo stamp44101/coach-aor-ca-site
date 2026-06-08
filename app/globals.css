@@ -21,7 +21,7 @@
   --color-mocha: #82939b;
 
   --font-display: "Playfair Display", "Times New Roman", serif;
-  --font-display-th: "Kanit", "Noto Sans Thai", system-ui, sans-serif;
+  --font-display-th: var(--font-kanit), "Kanit", "Noto Sans Thai", system-ui, sans-serif;
 }
 
 .font-display    { font-family: var(--font-display); }

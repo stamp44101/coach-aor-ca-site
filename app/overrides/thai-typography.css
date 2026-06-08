@@ -14,7 +14,7 @@
    ────────────────────────────────────────────────────────────────── */
 
 :lang(th) {
-  font-family: "Noto Sans Thai", system-ui, -apple-system, sans-serif;
+  font-family: var(--font-noto-thai), "Noto Sans Thai", system-ui, -apple-system, sans-serif;
 }
 
 /* "Large" text — headings + verbatim Canva Tailwind size classes */
@@ -24,7 +24,7 @@
 :lang(th) [class*="text-5xl"],
 :lang(th) [class*="text-6xl"],
 :lang(th) [class*="text-7xl"] {
-  font-family: "Kanit", "Noto Sans Thai", sans-serif;
+  font-family: var(--font-kanit), "Kanit", "Noto Sans Thai", sans-serif;
 }
 
 /* clonner-form (cloned Canva contact form) hard-codes system-ui. Override
@@ -32,5 +32,5 @@
    in the loopless Thai face. */
 :lang(th) .clonner-form,
 :lang(th) .clonner-form * {
-  font-family: "Noto Sans Thai", system-ui, sans-serif;
+  font-family: var(--font-noto-thai), "Noto Sans Thai", system-ui, sans-serif;
 }

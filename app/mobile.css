@@ -16,7 +16,7 @@
 }
 /* Thai mobile body uses Noto Sans Thai for a cleaner, minimal look */
 .msite[lang="th"] {
-  font-family: 'Noto Sans Thai', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-noto-thai), 'Noto Sans Thai', system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
 }
 .msite img { display: block; max-width: 100%; }
@@ -174,7 +174,7 @@
   font-family: 'Playfair Display', serif;
   text-shadow: 0 1px 6px rgba(0,0,0,0.4);
 }
-.msite[lang="th"] .mcard-title { font-family: 'Kanit', sans-serif; }
+.msite[lang="th"] .mcard-title { font-family: var(--font-kanit), 'Kanit', sans-serif; }
 .mcard-desc {
   margin-top: 10px; font-size: 14.5px; line-height: 1.55;
   color: rgba(255,255,255,0.92); text-shadow: 0 1px 4px rgba(0,0,0,0.45);
