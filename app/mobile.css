@@ -89,8 +89,12 @@
 .mhero-inner { position: relative; z-index: 2; padding: 56px 24px 48px; text-align: center; }
 .mhero-inner h1 { margin: 0; font-size: clamp(34px, 9vw, 46px); line-height: 1.12; color: #5a4632; font-weight: 600; }
 .mhero-with { margin-top: 10px; font-size: 16px; letter-spacing: .14em; color: #6b5743; }
-.mquote { margin: 22px auto 0; max-width: 30em; font-size: 17px; color: #5f4f41; }
-.mtag { margin-top: 22px; font-size: 15px; color: var(--blue); }
+.mquote { margin: 30px auto 0; max-width: 30em; font-size: 17px; color: #5f4f41; line-height: 1.7; }
+.mtag {
+  margin: 28px auto 0; font-size: 15px; color: var(--blue);
+  max-width: 20em; text-wrap: balance;
+}
+.mhero-inner .mbtn { margin-top: 34px; }
 
 /* ---- buttons (touch targets >= 48px) ---- */
 .mbtn {
@@ -99,7 +103,7 @@
   border-radius: 999px; font-size: 17px; font-weight: 600; letter-spacing: .02em;
   cursor: pointer; border: none;
 }
-.mbtn-blue { background: var(--blue); color: #fff; }
+.mbtn-blue { background: var(--ink); color: #fff; }
 .mbtn-ghost { background: transparent; color: var(--brown); border: 1.5px solid var(--brown); }
 .mbtn-tan { background: var(--tan); color: #fff; width: 100%; margin-top: 8px; }
 .mbtn:active { filter: brightness(.94); }
