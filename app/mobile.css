@@ -141,6 +141,7 @@
 .mbody { margin-top: 16px; font-size: 16.5px; color: #5b4d41; }
 .mcenter { text-align: center; }
 .mh2 { margin: 0 0 24px; font-size: clamp(28px, 7vw, 34px); color: #5a4632; font-weight: 600; line-height: 1.2; }
+#m-booking .mh2 { text-align: center; }
 
 /* ---- service cards (desktop-style: text overlaid on a dimmed image) ---- */
 .mcards { display: flex; flex-direction: column; gap: 22px; }
