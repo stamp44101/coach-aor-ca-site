@@ -13,7 +13,7 @@ export default function MobileSite({ lang }: { lang: Lang }) {
   const t = CONTENT[lang];
   const [menu, setMenu] = useState(false);
   const [sent, setSent] = useState(false);
-  const headFont = lang === 'th' ? "'Kanit', sans-serif" : "'Playfair Display', serif";
+  const headFont = lang === 'th' ? "var(--font-kanit), 'Kanit', sans-serif" : "'Playfair Display', serif";
   // The hero headline is English on BOTH languages (matching the desktop clone),
   // so always render it in the elegant Playfair serif — not Kanit on /th.
   const heroFont = "'Playfair Display', serif";
