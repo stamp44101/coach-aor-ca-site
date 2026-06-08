@@ -1,0 +1,274 @@
+/* Booking section: kept exactly as stamp extracted from
+   coach-aor-landing — max-w-7xl + px-6 md:px-12 container
+   intact. Two scoped fixes:
+   1. Link colour. Tailwind's preflight is disabled in this
+      project (see globals.css) so <a> falls back to the browser
+      default (blue + underline). Force-inherit so the brown of
+      the parent text shows through, like the live site.
+   2. Rem rescue. clone.css sets html { font-size: 62.5% } so
+      1rem = 10px and every Tailwind v4 rem-based token
+      (--spacing default 0.25rem, --container-7xl default 80rem)
+      computes to 62.5% of its intended pixel size. Side effects
+      stamp could see: section was 615px tall vs the live site's
+      924px, max-w-7xl was 800px vs the expected 1280px, padding
+      and gaps all shrank. Pin the two tokens to absolute px so
+      the verbatim Tailwind classes land at their intended sizes
+      inside #booking only — global Tailwind elsewhere is
+      untouched. */
+#booking a { color: inherit; }
+#booking {
+  --spacing: 4px;          /* default 0.25rem → 4px at 16px root */
+  --container-7xl: 1280px; /* default 80rem  → 1280px at 16px root */
+}
+/* Flip the verbatim grid's `items-stretch md:items-end` to top
+   alignment so the heading rides the top of the section. The
+   form sits at its natural content height — Send button follows
+   directly after the textarea (stamp's "Send button must hug the
+   form, not float at the bottom" feedback). Photo column is taller
+   so cream space appears below the form. */
+@media (min-width: 768px) {
+  #booking > div {
+    align-items: start !important;
+  }
+  #booking form textarea {
+    min-height: 120px !important;
+  }
+}
+
+/* Top + bottom padding both zeroed — stamp wants the booking
+   section to hug the nav above and the slate footer below with
+   no cream gap. */
+#booking {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Accessibility + readability optimisation pass (per customer
+   review). The target audience is women 30-55 — most will be
+   reading on a phone or laptop in normal indoor light, many
+   with presbyopia starting to bite. Tighten up the type scale,
+   make the QRs scan-friendly, and turn the LINE Official link
+   into something that obviously looks tappable.
+   ────────────────────────────────────────────────────────────── */
+
+/* 1. Form labels — 11px → 13px mobile / 14px desktop. The
+      original 0.22em tracking made them genuinely hard to read
+      so tone it down too. */
+#booking form label > span {
+  font-size: 13px !important;
+  letter-spacing: 0.14em !important;
+}
+@media (min-width: 768px) {
+  #booking form label > span { font-size: 14px !important; }
+}
+
+/* 2. Form input/textarea text — explicit 16px so iOS Safari
+      doesn't auto-zoom on focus (forces a layout shift that
+      reads as broken) and the value stays comfortable to read
+      while typing. Bump padding a touch so the tap target
+      stays >= 44px. */
+#booking form input,
+#booking form textarea {
+  font-size: 16px !important;
+  padding: 14px 16px !important;
+}
+
+/* 3. Send button — primary CTA on the section, but its text was
+      14-15px. Bump to 16px / 17px, keep the tracking. */
+#booking form button[type="submit"] {
+  font-size: 16px !important;
+  padding-block: 16px !important;
+  letter-spacing: 0.2em !important;
+}
+@media (min-width: 768px) {
+  #booking form button[type="submit"] { font-size: 17px !important; }
+}
+
+/* 4. Visible focus rings for keyboard nav and accessible UX.
+      `focus:border-cocoa` alone was a 1px swap; replace with a
+      proper 2px outline + offset that meets WCAG 2.4.7. */
+#booking form :where(input, textarea, button):focus-visible {
+  outline: 2px solid #674328 !important;
+  outline-offset: 2px !important;
+}
+
+/* 5. Right-column headline — "Ready to start your transformation
+      / with Coach Aor?". Was 16/18/20px which lost to the photo;
+      bump to 20/22/26 with tighter line-height so it actually
+      reads as a call to scan the QR below. */
+#booking [class*="aspect-"] > div.absolute.flex > p:first-of-type {
+  font-size: 20px !important;
+  line-height: 1.35 !important;
+}
+@media (min-width: 1024px) {
+  #booking [class*="aspect-"] > div.absolute.flex > p:first-of-type {
+    font-size: 24px !important;
+  }
+}
+
+/* 6. QR codes — was 80×80 / 96×96 px which is below the
+      120px floor that comfortable arm's-length scanning needs.
+      Bump to 120px mobile / 144px desktop. */
+#booking [class*="aspect-"] [class*="md:w-24"] {
+  width: 120px !important;
+  height: 120px !important;
+}
+@media (min-width: 1024px) {
+  #booking [class*="aspect-"] [class*="md:w-24"] {
+    width: 144px !important;
+    height: 144px !important;
+  }
+}
+
+/* 7. QR contrast — drop the original mix-blend: multiply so the
+      QR's natural white jpg background stays white and the phone
+      camera locks on instantly. No extra white card, no border,
+      no shadow — stamp said decorations on the photo read
+      cluttered. The QR jpg's own white margin is enough.  */
+#booking [style*="mix-blend-mode"] {
+  mix-blend-mode: normal !important;
+}
+
+/* 8. QR captions (WhatsApp / LINE Official) were 10/11px —
+      barely readable next to the now-larger QRs. 12/13px. */
+#booking [class*="aspect-"] .text-center > p {
+  font-size: 12px !important;
+  letter-spacing: 0.16em !important;
+  margin-top: 10px !important;
+}
+@media (min-width: 1024px) {
+  #booking [class*="aspect-"] .text-center > p {
+    font-size: 13px !important;
+  }
+}
+
+/* 9. "Line Official : @coachaorca" — reverted to the original
+      italic text link per customer review. Just inherit colour
+      (so it stays brown rather than browser-default blue). */
+#booking [class*="aspect-"] > div.absolute.flex > p:last-of-type a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+/* 10. Tighten the gap stack in the right column so the now-
+       larger QR + headline still fit at desktop. */
+@media (min-width: 768px) {
+  #booking [class*="aspect-"] > div.absolute.flex {
+    gap: 18px !important;
+    padding-right: 28px !important;
+    padding-bottom: 32px !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Full-section background image. Replaces the flat #f9f7ef cream
+   the section had defaulted to. The original photo column on the
+   right still sits on top — the bg shows through on the left half
+   behind the form and bleeds underneath the photo column's right
+   half. */
+#booking {
+  background-color: transparent !important;
+  background-image: url('/assets/last-section-bg.jpg') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* Photo column's two original decorative layers — the bg-white/25
+   overall lighten and the cream-wash gradient over the right
+   60-55%. Stamp wants the photo clean ("รูปมันโอเค"), no haze, no
+   fade, no overlays. Hide the two aria-hidden decorative divs and
+   let the photo render as captured. The text + QRs still sit on
+   top in their absolute container.   */
+#booking [class*="aspect-"] > div[aria-hidden="true"] {
+  display: none !important;
+}
+
+/* The photo column also has its own <img> (booking-portrait.jpg)
+   duplicating the woman who's already in the section background.
+   Drop it — the bg now does the job. The photo column becomes
+   transparent; only the absolute contact group (text + QRs +
+   LINE link) shows on top of the section background. */
+#booking [class*="aspect-"] > img {
+  display: none !important;
+}
+
+/* No partial white wash on the contact group — stamp said that
+   creates a visible "cut" against the unwashed photo. The bg
+   image's natural wood/cream behind the contact area is enough
+   contrast for the brown text. */
+
+/* ──────────────────────────────────────────────────────────────
+   Cross-language type-size parity. Customer noticed that
+   toggling EN ↔ TH made the same elements feel different sizes.
+   That's because the EN markup uses `font-display italic`
+   (Playfair Display) while the TH markup uses
+   `font-display-th font-medium` (Prompt). Their x-heights and
+   line-heights differ noticeably at the same Tailwind text-*
+   class — Prompt sets visibly larger than Playfair italic.
+
+   Anchor the Booking & Consultation H2 at a fixed pixel size
+   per breakpoint so EN and TH read at the same physical size
+   regardless of which face is rendering. Same for the right-
+   column "Ready to start…" headline — it's font-display italic
+   in EN, but for TH the markup falls back to the body font
+   which is heavier per glyph. */
+#booking h2 {
+  font-size: 36px !important;
+  line-height: 1.12 !important;
+}
+@media (min-width: 768px) {
+  #booking h2 {
+    font-size: 44px !important;
+    line-height: 1.1 !important;
+  }
+}
+@media (min-width: 1024px) {
+  #booking h2 {
+    font-size: 52px !important;
+  }
+}
+/* TH Prompt sets larger than Playfair at the same px — pull
+   it back a hair so the two languages occupy the same column
+   height. */
+:root[lang="th"] #booking h2,
+:lang(th) #booking h2 {
+  font-size: 32px !important;
+}
+@media (min-width: 768px) {
+  :lang(th) #booking h2 {
+    font-size: 40px !important;
+  }
+}
+@media (min-width: 1024px) {
+  :lang(th) #booking h2 {
+    font-size: 46px !important;
+  }
+}
+/* Right-column headline — same EN/TH parity. */
+#booking [class*="aspect-"] > div.absolute.flex > p:first-of-type {
+  font-size: 20px !important;
+}
+@media (min-width: 1024px) {
+  #booking [class*="aspect-"] > div.absolute.flex > p:first-of-type {
+    font-size: 24px !important;
+  }
+}
+:root[lang="th"] #booking [class*="aspect-"] > div.absolute.flex > p:first-of-type,
+:lang(th) #booking [class*="aspect-"] > div.absolute.flex > p:first-of-type {
+  font-size: 18px !important;
+}
+@media (min-width: 1024px) {
+  :lang(th) #booking [class*="aspect-"] > div.absolute.flex > p:first-of-type {
+    font-size: 22px !important;
+  }
+}
+
+/* Send pill was rendering with the browser default <button>
+   border (Tailwind's preflight is off on this project so the UA
+   border leaks through). Strip it so the pill reads as a solid
+   tan shape with no dark ring. */
+#booking form button[type="submit"] {
+  border: none !important;
+}

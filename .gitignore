@@ -2,3 +2,7 @@ node_modules
 .next
 out
 .vercel
+
+# Build artifacts
+tsconfig.tsbuildinfo
+.tmp/

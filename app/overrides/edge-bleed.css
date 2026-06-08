@@ -1,0 +1,100 @@
+/* ──────────────────────────────────────────────────────────────────
+   Full-bleed section backgrounds (the real edge-bleed fix).
+
+   The Canva export hard-codes width: 1440px on every coloured "panel"
+   (`.GDnEHQ`). FitToWidth tries to scale the whole design up to the
+   viewport with CSS `zoom`, but Edge at 1897px viewport reports
+   `getComputedStyle(#root).zoom === "1"` — the script's value is being
+   dropped silently and the coloured panel stays 1440px wide. Stamp
+   sees this as cream/contrast strips on each side of the nav and
+   bottom sections.
+
+   Fix: each coloured panel gets a `::before` pseudo-element that's exactly
+   the panel's height (`inset: 0 -100vw`) and 100vw wider on each side,
+   sitting at z-index: -1 behind the content. Body's overflow-x:hidden
+   crops the horizontal overhang so no scroll appears.
+
+   Combined with body's `overflow-x: hidden` this gives a perfect
+   full-bleed band at every coloured panel's vertical position,
+   regardless of whether FitToWidth's zoom actually fired, and
+   regardless of sub-pixel rounding at fractional zoom levels.
+
+   Each variant targets one bg colour the export uses (white nav/hero
+   panels + two cream tones + the brown services band).
+
+   History: The first attempt was box-shadow + clip-path: inset(0 -100vmax).
+   Per CSS spec inset() rejects negative values, so the negative inset got
+   parsed as inset(0) and ended up CLIPPING the shadow to the box —
+   making the bug worse on one side (verified at the preview by
+   sampling pixels: right edge near-white where the shadow reached
+   before clip-path, left edge still cream).
+
+   Switching to an absolutely-positioned pseudo-element fixed it.
+   Pseudo-element vs box-shadow: the pseudo is bounded vertically by
+   `top: 0; bottom: 0` (= exactly the host's height), so it physically
+   can't bleed into adjacent sections — unlike box-shadow which spread
+   in all directions and required clip-path containment.
+   ────────────────────────────────────────────────────────────────── */
+
+.GDnEHQ[style*="background-color: rgb(255, 255, 255)"],
+.GDnEHQ[style*="background-color: rgb(249, 247, 239)"],
+.GDnEHQ[style*="background-color: rgb(249, 248, 240)"],
+section[style*="background-color: rgb(141, 110, 82)"],
+section[style*="background-color: rgb(249, 247, 239)"],
+section[style*="background-color: rgb(249, 248, 240)"] {
+  position: relative;
+}
+
+.GDnEHQ[style*="background-color: rgb(255, 255, 255)"]::before {
+  content: "";
+  position: absolute;
+  inset: 0 -100vw;
+  background-color: rgb(255, 255, 255);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.GDnEHQ[style*="background-color: rgb(249, 247, 239)"]::before {
+  content: "";
+  position: absolute;
+  inset: 0 -100vw;
+  background-color: rgb(249, 247, 239);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.GDnEHQ[style*="background-color: rgb(249, 248, 240)"]::before {
+  content: "";
+  position: absolute;
+  inset: 0 -100vw;
+  background-color: rgb(249, 248, 240);
+  z-index: -1;
+  pointer-events: none;
+}
+
+section[style*="background-color: rgb(141, 110, 82)"]::before {
+  content: "";
+  position: absolute;
+  inset: 0 -100vw;
+  background-color: rgb(141, 110, 82);
+  z-index: -1;
+  pointer-events: none;
+}
+
+section[style*="background-color: rgb(249, 247, 239)"]::before {
+  content: "";
+  position: absolute;
+  inset: 0 -100vw;
+  background-color: rgb(249, 247, 239);
+  z-index: -1;
+  pointer-events: none;
+}
+
+section[style*="background-color: rgb(249, 248, 240)"]::before {
+  content: "";
+  position: absolute;
+  inset: 0 -100vw;
+  background-color: rgb(249, 248, 240);
+  z-index: -1;
+  pointer-events: none;
+}

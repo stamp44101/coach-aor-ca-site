@@ -1,0 +1,9 @@
+/* Page base — sets the cream canvas underneath the cloned design.
+   overflow-x:hidden is required by the edge-bleed pseudo-element trick in
+   edge-bleed.css: the ::before extends past the viewport edges and we need
+   the body to crop it so it doesn't trigger a horizontal scrollbar. */
+html, body, .clone-desktop {
+  background: #f9f8f0 !important;
+  overflow-x: hidden !important;
+}
+html { scrollbar-gutter: stable; }

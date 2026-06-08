@@ -1,0 +1,32 @@
+/* Full-bleed hero background (the lily) edge-to-edge. The lily is clipped to the
+   1440px design frame by ancestors that use overflow:hidden AND contain:paint
+   (Canva does this for perf — contain:paint clips painting even when overflow is
+   visible). Un-clip BOTH, scoped via :has to only the chain holding the lily so
+   other sections are unaffected, then stretch the lily to the viewport width. */
+.GDnEHQ:has(img[src*="05e1b97c"]),
+.onhyOQ:has(img[src*="05e1b97c"]),
+._8jGYJw:has(img[src*="05e1b97c"]),
+.H5qArQ:has(img[src*="05e1b97c"]),
+.Zp7NQw:has(img[src*="05e1b97c"]),
+.Izwocg:has(img[src*="05e1b97c"]) {
+  overflow: visible !important;
+  contain: none !important;
+  /* Decorative background only — after full-bleed it overlaps the nav, so let
+     clicks pass through to the nav / toggle behind it. */
+  pointer-events: none !important;
+}
+
+img[src*="05e1b97c"] {
+  /* The whole 1440 design is scaled to the viewport by FitToWidth, so size the
+     lily to the design frame (1679px = 116.6% of 1440) and use object-fit:cover
+     so it always keeps its aspect ratio — never stretched/squished. It fills the
+     full width after the zoom, with no distortion. */
+  width: 1679px !important;
+  max-width: none !important;
+  pointer-events: none !important;
+  height: 937px !important;
+  object-fit: cover !important;
+  object-position: center 30% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
