@@ -130,16 +130,16 @@
   mix-blend-mode: normal !important;
 }
 
-/* 8. QR captions (WhatsApp / LINE Official) were 10/11px —
-      barely readable next to the now-larger QRs. 12/13px. */
+/* 8. QR captions (WhatsApp / LINE Official) — Pat round 20 wanted them
+      bigger; bump 12/13px → 15/17px (visual ~20-22px after #root zoom). */
 #booking [class*="aspect-"] .text-center > p {
-  font-size: 12px !important;
+  font-size: 15px !important;
   letter-spacing: 0.16em !important;
   margin-top: 10px !important;
 }
 @media (min-width: 1024px) {
   #booking [class*="aspect-"] .text-center > p {
-    font-size: 13px !important;
+    font-size: 17px !important;
   }
 }
 
