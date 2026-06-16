@@ -21,10 +21,16 @@ export const IMG = {
     A + '5d20365a48ff83639cdff084d3188bb7.jpg',
     A + '783ccad14583f32848c90877a68c81f6.jpg',
   ],
+  // Order matches the desktop L→R testimonial layout (Khun Sine, Khun Pear,
+  // Khun Bam) so the mobile photo above each caption is the same person as on
+  // desktop. Source array hashes (desktop x-coords measured 2026-06-16):
+  //   7c654a @ x=112 → Khun Sine
+  //   1d18e77 @ x=402 → Khun Pear
+  //   355c91  @ x=1103 → Khun Bam
   t: [
+    A + '7c654a1b432649cca1c46f51e9b7bc1e.jpg',
     A + '1d18e77e0429b1ad3732cd953aac352f.jpg',
     A + '355c91cbc9cdbe7f17f365cdc9896c9d.jpg',
-    A + '7c654a1b432649cca1c46f51e9b7bc1e.jpg',
   ],
 };
 

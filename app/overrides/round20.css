@@ -20,3 +20,11 @@
   line-height: 22px !important;
   padding: 3px 11px !important;
 }
+
+/* ── Mobile-only: bump small labels so LINE Official + footer don't read tiny. */
+.msite .mqr figcaption { font-size: 15px; }
+.msite .mline { font-size: 16.5px; }
+.msite .mfoot-name { font-size: 22px; }
+.msite .mfoot-follow { font-size: 16px; }
+.msite .mfoot-social a { font-size: 16px; }
+.msite .mfoot-mail { font-size: 16px; }
