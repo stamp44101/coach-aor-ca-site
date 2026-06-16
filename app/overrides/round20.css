@@ -10,6 +10,9 @@
 .clone-desktop section[id="PBhs7JVTV885wPK2"] [id$="wzh25rm4PLk"] > div[role="group"] {
   align-items: center !important;
   padding: 2px !important;
+  /* The Canva-export inline transform on the wrapper places the pill ~6px below
+     the nav-link baseline once the nav text is shrunk to 16px; nudge it back up. */
+  margin-top: -6px !important;
 }
 
 .clone-desktop section[id="PBhs7JVTV885wPK2"] [id$="wzh25rm4PLk"] a {
