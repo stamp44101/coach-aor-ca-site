@@ -131,11 +131,14 @@
 }
 
 /* 8. QR captions (WhatsApp / LINE Official) — Pat round 20 wanted them
-      bigger; bump 12/13px → 15/17px (visual ~20-22px after #root zoom). */
+      bigger; bump 12/13px → 15/17px (visual ~20-22px after #root zoom).
+      Letter-spacing slimmed 0.16em → 0.06em so "LINE OFFICIAL" stays one
+      line in the narrow caption column. */
 #booking [class*="aspect-"] .text-center > p {
   font-size: 15px !important;
-  letter-spacing: 0.16em !important;
+  letter-spacing: 0.06em !important;
   margin-top: 10px !important;
+  white-space: nowrap !important;
 }
 @media (min-width: 1024px) {
   #booking [class*="aspect-"] .text-center > p {
