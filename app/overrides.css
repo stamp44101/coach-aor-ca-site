@@ -25,3 +25,6 @@
 /* Thai-language typography lock-down — Kanit for large, Noto Sans Thai for
    small, defensive against system-font fallback picking a looped Thai face. */
 @import './overrides/thai-typography.css';
+
+/* Round 20 — desktop nav shrink + lang switcher balance (Pat 2026-06-16). */
+@import './overrides/round20.css';

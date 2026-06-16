@@ -1,0 +1,19 @@
+/* Round 20 — Pat feedback 2026-06-16. Desktop only (mobile uses MobileSite).
+   1. Decrease desktop nav link font (was 22.13px) so it doesn't dwarf the logo + lang switcher.
+   2. Re-balance the TH/EN switcher so it visually centers with the smaller nav text. */
+
+.clone-desktop section[id="PBhs7JVTV885wPK2"] p[class*="_28USrA"] {
+  --H97cbQ: 16px !important;
+  line-height: 22px !important;
+}
+
+.clone-desktop section[id="PBhs7JVTV885wPK2"] [id$="wzh25rm4PLk"] > div[role="group"] {
+  align-items: center !important;
+  padding: 2px !important;
+}
+
+.clone-desktop section[id="PBhs7JVTV885wPK2"] [id$="wzh25rm4PLk"] a {
+  font-size: 13px !important;
+  line-height: 22px !important;
+  padding: 3px 11px !important;
+}

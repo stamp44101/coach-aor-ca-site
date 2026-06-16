@@ -48,7 +48,7 @@ export const CONTENT: Record<Lang, any> = {
     hero: {
       title: 'Step Into Your Feminine Power',
       with: 'WITH COACH AOR',
-      quote: '“I believe that every woman can create the life she desires, once she truly knows herself and unlocks her power within.”',
+      quote: '“I believe that every woman can create the life she desires, once she truly knows herself and connect to the power within.”',
       cta: 'Book a Session',
       tag: 'Unleash your potential with professional coaching.',
     },
