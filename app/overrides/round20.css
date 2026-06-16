@@ -28,3 +28,12 @@
 .msite .mfoot-follow { font-size: 16px; }
 .msite .mfoot-social a { font-size: 16px; }
 .msite .mfoot-mail { font-size: 16px; }
+
+/* ── TH desktop: 'จองเซสชั่น' buttons were inline-stamped with font-size:17px +
+   letter-spacing:-0.05em (Canva auto-shrunk the Thai run). The negative tracking
+   on Noto Sans Thai squishes glyph clusters; bump to 20px and reset tracking so
+   the text breathes inside the 80px button height like the EN version does. */
+.clone-desktop[lang="th"] p[style*="Noto Sans Thai"][style*="text-transform: uppercase"][style*="font-weight: 500"] {
+  font-size: 20px !important;
+  letter-spacing: 0 !important;
+}
