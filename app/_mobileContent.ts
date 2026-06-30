@@ -74,7 +74,7 @@ export const CONTENT: Record<Lang, any> = {
     testimonialsTitle: 'Testimonials',
     testimonials: [
       { name: 'Khun Sai', role: 'Psychotherapist & Business Owner', quote: '“I’m so grateful we met. I used to be paralyzed by the fear of building a business. Today I’ve found the courage to take action and turn my vision into reality. I now wake up every day excited to live my life to the fullest.”' },
-      { name: 'Khun Pear', role: 'Investor', quote: '“I want to thank you, Coach Aor, and thank myself for choosing to shift my inner energy. I spent so long chasing success until my body and mind broke down. Now I’ve found the courage to quit and build a new life for myself.”' },
+      { name: 'Khun Pear', role: 'Business owner & Investor', quote: '“I want to thank you, Coach Aor, and thank myself for choosing to shift my inner energy. I spent so long chasing success until my body and mind broke down. Now I’ve found the courage to quit and build a new life for myself.”' },
       { name: 'Khun Bam', role: 'Investor', quote: '“Thank you for being my mirror and providing the guidance that helped me see myself so clearly. My mindset has shifted tremendously — even my friends have noticed the change. I only wish we had met sooner!”' },
     ],
     bookingTitle: 'Booking & Consultation',
