@@ -21,8 +21,19 @@ const notoSansThai = Noto_Sans_Thai({
 });
 
 export const metadata: Metadata = {
-  title: "Copy of COACH AOR CA - Website Design (Laptop Version)",
-  description: "",
+  metadataBase: new URL("https://coachaorca.com"),
+  title: "Coach Aor CA — Panida Thongsui | Transformational Coaching & Hypnotherapy",
+  description:
+    "Step into your fullest potential with Coach Aor (Panida Thongsui) — a transformational coach and hypnotherapist with 1,000+ coaching hours. Private coaching, hypnotherapy, trauma healing, courses, and workshops.",
+  openGraph: {
+    title: "Coach Aor CA — Transformational Coaching & Hypnotherapy",
+    description:
+      "Private coaching, hypnotherapy, trauma healing, courses, and workshops with Coach Aor (Panida Thongsui).",
+    url: "https://coachaorca.com",
+    siteName: "Coach Aor CA",
+    locale: "en_GB",
+    type: "website",
+  },
 };
 
 export const viewport: Viewport = { width: 'device-width', initialScale: 1 };
