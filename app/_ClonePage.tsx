@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import './clone.css';
 import './overrides.css';
 import MobileSite from './MobileSite';
+import DesktopContactForm from './DesktopContactForm';
 
 type Lang = 'en' | 'th';
 
@@ -16,6 +17,7 @@ export function ClonePage({ lang }: { lang: Lang }) {
   return (
     <>
       <div className="clone-desktop" lang={lang} dangerouslySetInnerHTML={{ __html: bodyHtml }} />
+      <DesktopContactForm />
       <MobileSite lang={lang} />
     </>
   );

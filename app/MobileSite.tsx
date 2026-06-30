@@ -118,7 +118,19 @@ export default function MobileSite({ lang }: { lang: Lang }) {
       <section id="m-booking" className="msec msec-cream">
         <h2 className="mh2" style={{ fontFamily: headFont }}>{t.bookingTitle}</h2>
         <p className="mbody mcenter">{t.bookingText}</p>
-        <form className="mform" onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
+        <form className="mform" onSubmit={async (e) => {
+          e.preventDefault();
+          const fd = new FormData(e.currentTarget);
+          try {
+            const res = await fetch('/api/contact', {
+              method: 'POST', headers: { 'content-type': 'application/json' },
+              body: JSON.stringify({ name: String(fd.get('name') || ''), email: String(fd.get('email') || ''), message: String(fd.get('message') || '') }),
+            });
+            const j = await res.json().catch(() => ({ ok: false }));
+            if (res.ok && j.ok) setSent(true);
+            else alert('ส่งไม่สำเร็จ ลองอีกครั้ง หรือทักทาง LINE @coachaorca');
+          } catch { alert('ส่งไม่สำเร็จ ลองอีกครั้ง หรือทักทาง LINE @coachaorca'); }
+        }}>
           {sent ? (
             <p className="mform-done">{t.form.done}</p>
           ) : (
