@@ -21,10 +21,10 @@ export const IMG = {
     A + '5d20365a48ff83639cdff084d3188bb7.jpg',
     A + '783ccad14583f32848c90877a68c81f6.jpg',
   ],
-  // Order matches the desktop L→R testimonial layout (Khun Sine, Khun Pear,
+  // Order matches the desktop L→R testimonial layout (Khun Sai, Khun Pear,
   // Khun Bam) so the mobile photo above each caption is the same person as on
   // desktop. Source array hashes (desktop x-coords measured 2026-06-16):
-  //   7c654a @ x=112 → Khun Sine
+  //   7c654a @ x=112 → Khun Sai
   //   1d18e77 @ x=402 → Khun Pear
   //   355c91  @ x=1103 → Khun Bam
   t: [
@@ -73,7 +73,7 @@ export const CONTENT: Record<Lang, any> = {
     cta2: 'Ready to start your transformation with Coach Aor?',
     testimonialsTitle: 'Testimonials',
     testimonials: [
-      { name: 'Khun Sine', role: 'Psychotherapist & Business Owner', quote: '“I’m so grateful we met. I used to be paralyzed by the fear of building a business. Today I’ve found the courage to take action and turn my vision into reality. I now wake up every day excited to live my life to the fullest.”' },
+      { name: 'Khun Sai', role: 'Psychotherapist & Business Owner', quote: '“I’m so grateful we met. I used to be paralyzed by the fear of building a business. Today I’ve found the courage to take action and turn my vision into reality. I now wake up every day excited to live my life to the fullest.”' },
       { name: 'Khun Pear', role: 'Investor', quote: '“I want to thank you, Coach Aor, and thank myself for choosing to shift my inner energy. I spent so long chasing success until my body and mind broke down. Now I’ve found the courage to quit and build a new life for myself.”' },
       { name: 'Khun Bam', role: 'Investor', quote: '“Thank you for being my mirror and providing the guidance that helped me see myself so clearly. My mindset has shifted tremendously — even my friends have noticed the change. I only wish we had met sooner!”' },
     ],
