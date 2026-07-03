@@ -1,0 +1,44 @@
+{
+  "IMG": {
+    "logo": "/assets/6a3b05c7f68885946c1acc9888638750.png",
+    "hero": "/assets/05e1b97cbad92d8c9accd67142277d86.jpg",
+    "about": "/assets/13531b2682173fa73aadddbf9af5444c.jpg",
+    "booking": "/assets/07dea294c8102a2a1d78f9b7cadf5c83.jpg",
+    "qrWhatsapp": "/assets/whatsapp-qr.jpg",
+    "qrLine": "/assets/line-qr.png",
+    "s": [
+      "/assets/99831c8bc1f4f5f71d11a29927ffacb9.jpg",
+      "/assets/ce973278bc7ab36150d5cf24b34b1c87.jpg",
+      "/assets/426551c9a5703b5386c79f3799cae0ca.jpg",
+      "/assets/5d20365a48ff83639cdff084d3188bb7.jpg",
+      "/assets/783ccad14583f32848c90877a68c81f6.jpg"
+    ],
+    "t": [
+      "/assets/7c654a1b432649cca1c46f51e9b7bc1e.jpg",
+      "/assets/1d18e77e0429b1ad3732cd953aac352f.jpg",
+      "/assets/355c91cbc9cdbe7f17f365cdc9896c9d.jpg"
+    ]
+  },
+  "SOCIALS": [
+    [
+      "LINE",
+      "https://lin.ee/ZVRHOhSu"
+    ],
+    [
+      "Facebook",
+      "https://www.facebook.com/coachaor.ca/"
+    ],
+    [
+      "Instagram",
+      "https://www.instagram.com/coachaor.ca/"
+    ],
+    [
+      "TikTok",
+      "https://www.tiktok.com/@coachaor.ca"
+    ],
+    [
+      "YouTube",
+      "https://www.youtube.com/@CoachAorCA"
+    ]
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "nav": [
+    [
+      "About Me",
+      "#m-about"
+    ],
+    [
+      "Service",
+      "#m-services"
+    ],
+    [
+      "Testimonials",
+      "#m-testimonials"
+    ],
+    [
+      "Contact",
+      "#m-booking"
+    ]
+  ],
+  "hero": {
+    "title": "Step Into Your Feminine Power",
+    "with": "WITH COACH AOR",
+    "quote": "“I believe that every woman can create the life she desires, once she truly knows herself and connect to the power within.”",
+    "cta": "Book a Session",
+    "tag": "Unleash your potential with professional coaching."
+  },
+  "aboutQuote": "“All power comes from reconnecting with your true self.”",
+  "name": "Panida Thongsui — Coach Aor",
+  "role": "(Transformational Coach & Founder of Coach Aor CA)",
+  "bio": "After overcoming chronic health issues, stress, and burnout at just 19, I embarked on a journey of holistic healing. By mastering the art of self-healing without medication, I transformed my life and dedicated myself to professional coaching and counseling at an international standard. With over 1,000 coaching hours, I believe true transformation must happen across Body, Mind, Energy, and the Subconscious. My approach integrates Professional Coaching, Hypnotherapy, Trauma Healing, Yin-Yang Balance, and Spiritual Energy Work — empowering women to reconnect with themselves and design a life aligned with their truest values.",
+  "servicesTitle": "Our Services",
+  "services": [
+    {
+      "title": "Private Coaching",
+      "desc": "Deep-dive coaching to identify and resolve root causes while designing a sustainable lifestyle.",
+      "bullets": [
+        "Love & Relationships",
+        "Self-Worth & Confidence",
+        "Inner Child & Trauma Healing",
+        "Feminine Energy",
+        "Wealth & Success",
+        "Life Purpose & Values"
+      ],
+      "meta": "60–90 min / session"
+    },
+    {
+      "title": "Coaching + Hypnotherapy",
+      "desc": "A powerful blend of professional coaching and hypnotherapy to rewire the subconscious mind and release deep-seated blocks.",
+      "bullets": [
+        "Fear of abandonment",
+        "Repeating relationship patterns",
+        "Low self-worth",
+        "Fear of success",
+        "Trauma & emotional blocks"
+      ],
+      "meta": "90–120 min / session"
+    },
+    {
+      "title": "Online Course",
+      "desc": "Transform from the comfort of your home. Focused on Feminine Energy, Self-Love, and Self-Worth.",
+      "bullets": [
+        "Awaken Feminine Energy",
+        "High Value Woman"
+      ],
+      "meta": "3–5 hours / course"
+    },
+    {
+      "title": "Workshops & Retreat",
+      "desc": "In-person experiences designed as a safe space for deep listening and self-reconnection.",
+      "bullets": [
+        "Women's Circle",
+        "Dream Board Workshop",
+        "Sound Healing",
+        "Self-love & Self-care"
+      ],
+      "meta": "Chiang Mai · Bangkok · Phuket"
+    },
+    {
+      "title": "Transformational Coach Training",
+      "desc": "Get certified and master the art of coaching for professional and personal success.",
+      "bullets": [
+        "Coaching Foundations",
+        "World-Class Coaching Tools",
+        "Case Studies",
+        "Building Client Trust",
+        "Growing a Coaching Business"
+      ],
+      "meta": "Approx. 2 months"
+    }
+  ],
+  "cta2": "Ready to start your transformation with Coach Aor?",
+  "testimonialsTitle": "Testimonials",
+  "testimonials": [
+    {
+      "name": "Khun Sai",
+      "role": "Psychotherapist & Business Owner",
+      "quote": "“I’m so grateful we met. I used to be paralyzed by the fear of building a business. Today I’ve found the courage to take action and turn my vision into reality. I now wake up every day excited to live my life to the fullest.”"
+    },
+    {
+      "name": "Khun Prae",
+      "role": "Business owner & Investor",
+      "quote": "“I want to thank you, Coach Aor, and thank myself for choosing to shift my inner energy. I spent so long chasing success until my body and mind broke down. Now I’ve found the courage to quit and build a new life for myself.”"
+    },
+    {
+      "name": "Khun Bam",
+      "role": "Investor",
+      "quote": "“Thank you for being my mirror and providing the guidance that helped me see myself so clearly. My mindset has shifted tremendously — even my friends have noticed the change. I only wish we had met sooner!”"
+    }
+  ],
+  "bookingTitle": "Booking & Consultation",
+  "bookingText": "Book a session with Coach Aor.",
+  "form": {
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send",
+    "done": "Thank you — we’ll be in touch shortly. ✦"
+  },
+  "followTxt": "Follow Me On Social Media"
+}
