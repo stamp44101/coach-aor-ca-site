@@ -29,6 +29,17 @@
 
 html, body { margin: 0; padding: 0; }
 
+/* The /admin CMS UI is built with the standard border-box model, but Tailwind's
+   preflight (which would set box-sizing:border-box globally) is intentionally
+   disabled above so it can't fight the Canva clone's own resets. Without it,
+   elements default to content-box, so w-full inputs + their px padding render
+   WIDER than their cards and poke out ("ทะลุ"). Scope a border-box reset to the
+   admin subtree only — the clone/main site is untouched. */
+.cms-admin,
+.cms-admin *,
+.cms-admin *::before,
+.cms-admin *::after { box-sizing: border-box; }
+
 /* Working contact form that replaces Canva's embedded form widget, styled to
    match the original (labels above fields, rounded inputs, tan Send button).
    Fills the container the widget occupied. Restyle freely. */

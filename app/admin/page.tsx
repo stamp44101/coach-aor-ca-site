@@ -397,7 +397,7 @@ export default function AdminPage() {
 
   if (!authed) {
     return (
-      <div className="grid min-h-screen place-items-center bg-stone-100 px-4">
+      <div className="cms-admin grid min-h-screen place-items-center bg-stone-100 px-4">
         <form onSubmit={login} className="w-full max-w-sm rounded-2xl bg-white p-6 shadow">
           <h1 className="mb-1 text-lg font-bold text-stone-800">Coach Aor — จัดการเนื้อหา</h1>
           <p className="mb-4 text-xs text-stone-400">ใส่รหัสผ่านผู้ดูแล</p>
@@ -425,7 +425,7 @@ export default function AdminPage() {
   ];
 
   return (
-    <div className="mx-auto min-h-screen max-w-3xl overflow-x-clip bg-stone-100 px-4 py-6">
+    <div className="cms-admin mx-auto min-h-screen max-w-3xl overflow-x-clip bg-stone-100 px-4 py-6">
       <header className="sticky top-0 z-10 -mx-4 mb-5 flex flex-wrap items-center gap-2 border-b border-stone-200 bg-stone-100/95 px-4 py-3 backdrop-blur">
         <h1 className="text-base font-bold text-stone-800">จัดการเนื้อหา Coach Aor</h1>
         {dirty && (
