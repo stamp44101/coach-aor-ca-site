@@ -66,8 +66,20 @@ export async function POST(req: Request) {
       const old = await fileAt(repo, sha, path);
       if (old.content === undefined) continue; // didn't exist at that commit
       const cur = await fileAt(repo, branch, path);
-      if (cur.content === old.content) continue; // already identical
-      await putFile(repo, branch, path, old.content, cur.sha, `cms: restore ${path.replace("content/", "")} to ${sha.slice(0, 7)}`);
+      let target = old.content;
+      if (path === "content/global.json" && cur.content) {
+        // Never roll back dev-managed images — keep the CURRENT IMG and restore
+        // only the owner-editable social links from the snapshot.
+        try {
+          const curObj = JSON.parse(cur.content);
+          const oldObj = JSON.parse(old.content);
+          target = JSON.stringify({ ...oldObj, IMG: curObj.IMG ?? oldObj.IMG }, null, 2) + "\n";
+        } catch {
+          /* malformed — fall back to the full snapshot */
+        }
+      }
+      if (cur.content === target) continue; // already identical
+      await putFile(repo, branch, path, target, cur.sha, `cms: restore ${path.replace("content/", "")} to ${sha.slice(0, 7)}`);
       restored.push(path.replace("content/", ""));
     }
     return NextResponse.json({
