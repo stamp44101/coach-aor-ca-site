@@ -6,3 +6,7 @@ out
 # Build artifacts
 tsconfig.tsbuildinfo
 .tmp/
+
+# local secrets
+.env*.local
+.env.local
