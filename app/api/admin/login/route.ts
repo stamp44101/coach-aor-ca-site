@@ -15,7 +15,9 @@ export async function POST(req: Request) {
   if (!expected) {
     return NextResponse.json({ ok: false, error: "server not configured" }, { status: 500 });
   }
-  if (typeof body.password !== "string" || body.password !== expected) {
+  // Trim both sides — a trailing space/newline pasted into the env var (or typed)
+  // is the most common "correct password rejected" cause; never intentional here.
+  if (typeof body.password !== "string" || body.password.trim() !== expected.trim()) {
     return NextResponse.json({ ok: false, error: "รหัสผ่านไม่ถูกต้อง" }, { status: 401 });
   }
   const token = await createSession();
