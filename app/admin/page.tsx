@@ -29,6 +29,15 @@ function blankLike(sample: any): any {
   return "";
 }
 
+// Friendly label for an owner edit-snapshot commit (history tab).
+function editLabel(msg: string): string {
+  if (msg.startsWith("cms: restore")) return "↩️ ย้อนกลับเวอร์ชัน";
+  if (msg.includes("th.json")) return "แก้ไขเนื้อหา (ไทย)";
+  if (msg.includes("en.json")) return "แก้ไขเนื้อหา (English)";
+  if (msg.includes("global.json")) return "แก้ไขลิงก์โซเชียล";
+  return "แก้ไขเนื้อหา";
+}
+
 // Which content fields belong to each friendly section (text tabs only —
 // images are intentionally NOT surfaced here).
 const SECTIONS: { title: string; desc?: string; keys: string[]; advanced?: boolean }[] = [
@@ -446,7 +455,7 @@ export default function AdminPage() {
         {tab === "social"
           ? "ลิงก์โซเชียล (ใช้ร่วมทั้งสองภาษา) — แก้ชื่อและลิงก์ได้"
           : tab === "history"
-          ? "ประวัติการแก้ไข — ถ้าแก้พลาด กด “ย้อนกลับ” เพื่อคืนเนื้อหาเป็นเวอร์ชันนั้น (เว็บจะอัปเดตใน ~1 นาที)"
+          ? "ประวัติการแก้ไขเนื้อหา (เฉพาะที่คุณบันทึกเอง) — ถ้าแก้พลาด กด “ย้อนกลับ” เพื่อคืนเป็นเวอร์ชันนั้น (~1 นาที)"
           : "แก้ข้อความในแต่ละหมวดได้เลย เสร็จแล้วกด “บันทึก” มุมขวาบน · การจัดวาง/รูปภาพถูกล็อกไว้เพื่อกันหน้าเว็บเพี้ยน"}
       </p>
 
@@ -465,7 +474,7 @@ export default function AdminPage() {
                     className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-lg border border-stone-200 bg-white px-3 py-2.5"
                   >
                     <div className="min-w-0 flex-1">
-                      <div className="truncate text-sm text-stone-700">{c.message}</div>
+                      <div className="truncate text-sm text-stone-700">{editLabel(c.message)}</div>
                       <div className="text-xs text-stone-400">
                         {c.date ? new Date(c.date).toLocaleString("th-TH", { dateStyle: "medium", timeStyle: "short" }) : ""}
                         {i === 0 && " · เวอร์ชันปัจจุบัน"}

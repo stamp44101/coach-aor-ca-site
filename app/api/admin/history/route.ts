@@ -13,7 +13,7 @@ export async function GET() {
     return NextResponse.json({ commits: [], note: "not configured (dev)" });
   }
   const r = await fetch(
-    `${GH}/repos/${repo}/commits?sha=${encodeURIComponent(branch)}&path=content&per_page=15`,
+    `${GH}/repos/${repo}/commits?sha=${encodeURIComponent(branch)}&path=content&per_page=60`,
     {
       headers: {
         Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
@@ -27,11 +27,17 @@ export async function GET() {
     return NextResponse.json({ commits: [], error: `history ${r.status}` }, { status: 502 });
   }
   const j = (await r.json()) as any[];
-  const commits = j.map((c) => ({
-    sha: c.sha as string,
-    message: (c.commit?.message ?? "").split("\n")[0] as string,
-    date: c.commit?.author?.date as string,
-    author: c.commit?.author?.name as string,
-  }));
+  // Only surface the owner's own content edits (save/restore snapshots) — NOT
+  // technical/dev commits — so a rollback can never revert code or land on a
+  // developer state.
+  const commits = j
+    .filter((c) => (c.commit?.message ?? "").startsWith("cms: "))
+    .map((c) => ({
+      sha: c.sha as string,
+      message: (c.commit?.message ?? "").split("\n")[0] as string,
+      date: c.commit?.author?.date as string,
+      author: c.commit?.author?.name as string,
+    }))
+    .slice(0, 20);
   return NextResponse.json({ commits });
 }
