@@ -1,0 +1,28 @@
+/* Global "smaller than Figma" text scale.
+   ------------------------------------------------------------------
+   Stamp found even the Figma sizes too large on a real screen. Every
+   Canva text block sizes off a per-element px variable `--H97cbQ` on
+   its <p> (the <span> inside is font-size:1em, i.e. inherits it), so
+   multiplying that variable shrinks ALL variable-based text uniformly
+   in one rule — while the design keeps zoom-filling the viewport width
+   (no side gaps, no centering needed, unlike lowering the zoom).
+
+   The tiny feature-list items (~12–13px, hard-coded px, no variable)
+   are intentionally left alone — they're already the smallest text and
+   shrinking them further would hurt legibility.
+
+   Dial --clone-text-scale to taste (1 = original/Figma size, lower =
+   smaller). Desktop only; the mobile site is a separate component. */
+@media (min-width: 768px) {
+  :root {
+    --clone-text-scale: 0.65;
+  }
+  .clone-desktop [style*="--H97cbQ"] {
+    font-size: calc(var(--H97cbQ) * var(--clone-text-scale)) !important;
+    /* Canva hard-codes line-height in px; once the font shrinks that px
+       leading is far too loose (up to ~2.1x). Switch to a unitless ratio so
+       leading scales with the (now smaller) font. 1.3 reads well for both
+       headings and body without cramping. */
+    line-height: 1.3 !important;
+  }
+}

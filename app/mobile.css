@@ -235,10 +235,18 @@
 .mfoot-mail { margin-top: 18px; font-size: 14px; opacity: .85; }
 .mfoot-mail a { text-decoration: underline; }
 
-/* ---- show/hide: mobile layout < 768, desktop clone >= 768 ---- */
+/* ---- show/hide: mobile layout on phones (portrait <768 AND landscape phones
+   <=950px wide), desktop rebuild otherwise ---- */
 .msite { display: none; }
 .clone-desktop { display: block; }
-@media (max-width: 767px) {
+@media (max-width: 767px), (max-width: 950px) and (orientation: landscape) {
   .msite { display: block; }
   .clone-desktop { display: none !important; }
+}
+/* Landscape phone: keep the mobile as a centered phone-width column so the
+   single column doesn't stretch across the wide, short viewport. The cream
+   page background blends the side gutters. */
+@media (max-width: 950px) and (orientation: landscape) {
+  html, body { background: #f7f3ea; }
+  .msite { max-width: 600px; margin-inline: auto; }
 }

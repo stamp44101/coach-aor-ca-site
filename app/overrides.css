@@ -18,6 +18,11 @@
    was containing the image to the 1440 design frame, then stretches the lily. */
 @import './overrides/hero-lily.css';
 
+/* Global text scale — shrink all Canva text below the Figma sizes (Stamp
+   found even Figma too large on a real screen). Supersedes the earlier
+   hero-only tuning by scaling every var-based text block uniformly. */
+@import './overrides/text-scale.css';
+
 /* Booking & Consultation section — link colour, rem rescue, layout, type sizes,
    accessibility/readability pass, full-section bg image, EN↔TH font parity. */
 @import './overrides/booking.css';
