@@ -5,8 +5,9 @@ import { useEffect, useMemo, useState } from "react";
 import { LABELS, HELP, TEXTAREA } from "../../content/labels";
 
 type Lang = "th" | "en";
-type Tab = Lang | "social";
+type Tab = Lang | "social" | "history";
 type Data = { en: any; th: any; global: any };
+type Commit = { sha: string; message: string; date: string; author: string };
 
 // immutable deep-set by path
 function setPath(obj: any, path: (string | number)[], val: any): any {
@@ -284,6 +285,41 @@ export default function AdminPage() {
   const [tab, setTab] = useState<Tab>("th");
   const [saving, setSaving] = useState(false);
   const [msg, setMsg] = useState("");
+  const [history, setHistory] = useState<Commit[]>([]);
+  const [histLoading, setHistLoading] = useState(false);
+  const [pendingSha, setPendingSha] = useState("");
+  const [restoring, setRestoring] = useState(false);
+
+  const loadHistory = async () => {
+    setHistLoading(true);
+    const r = await fetch("/api/admin/history", { cache: "no-store" });
+    const j = await r.json().catch(() => ({ commits: [] }));
+    setHistory(j.commits || []);
+    setHistLoading(false);
+  };
+  useEffect(() => {
+    if (tab === "history" && authed) void loadHistory();
+  }, [tab, authed]);
+
+  const doRestore = async (sha: string) => {
+    setRestoring(true);
+    setMsg("");
+    const r = await fetch("/api/admin/restore", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ sha }),
+    });
+    setRestoring(false);
+    setPendingSha("");
+    const j = await r.json().catch(() => ({}));
+    if (r.ok && j.ok) {
+      setMsg(j.note || "ย้อนแล้ว ✓");
+      await load();
+      await loadHistory();
+    } else {
+      setMsg("ผิดพลาด: " + (j.error || r.statusText));
+    }
+  };
 
   const load = async () => {
     const r = await fetch("/api/admin/content", { cache: "no-store" });
@@ -361,7 +397,12 @@ export default function AdminPage() {
     );
   }
 
-  const TABS: [Tab, string][] = [["th", "🇹🇭 ไทย"], ["en", "🇬🇧 English"], ["social", "🔗 ลิงก์โซเชียล"]];
+  const TABS: [Tab, string][] = [
+    ["th", "🇹🇭 ไทย"],
+    ["en", "🇬🇧 English"],
+    ["social", "🔗 ลิงก์"],
+    ["history", "🕘 ประวัติ"],
+  ];
 
   return (
     <div className="mx-auto min-h-screen max-w-3xl bg-stone-100 px-4 py-6">
@@ -404,11 +445,69 @@ export default function AdminPage() {
       <p className="mb-4 text-xs text-stone-400">
         {tab === "social"
           ? "ลิงก์โซเชียล (ใช้ร่วมทั้งสองภาษา) — แก้ชื่อและลิงก์ได้"
+          : tab === "history"
+          ? "ประวัติการแก้ไข — ถ้าแก้พลาด กด “ย้อนกลับ” เพื่อคืนเนื้อหาเป็นเวอร์ชันนั้น (เว็บจะอัปเดตใน ~1 นาที)"
           : "แก้ข้อความในแต่ละหมวดได้เลย เสร็จแล้วกด “บันทึก” มุมขวาบน · การจัดวาง/รูปภาพถูกล็อกไว้เพื่อกันหน้าเว็บเพี้ยน"}
       </p>
 
       <div className="flex flex-col gap-4 pb-24">
-        {tab === "social" ? (
+        {tab === "history" ? (
+          <Section title="🕘 ประวัติการแก้ไข">
+            {histLoading ? (
+              <div className="py-6 text-center text-sm text-stone-400">กำลังโหลด…</div>
+            ) : history.length === 0 ? (
+              <div className="py-6 text-center text-sm text-stone-400">ยังไม่มีประวัติการแก้ไข</div>
+            ) : (
+              <div className="flex flex-col gap-2">
+                {history.map((c, i) => (
+                  <div
+                    key={c.sha}
+                    className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-lg border border-stone-200 bg-white px-3 py-2.5"
+                  >
+                    <div className="min-w-0 flex-1">
+                      <div className="truncate text-sm text-stone-700">{c.message}</div>
+                      <div className="text-xs text-stone-400">
+                        {c.date ? new Date(c.date).toLocaleString("th-TH", { dateStyle: "medium", timeStyle: "short" }) : ""}
+                        {i === 0 && " · เวอร์ชันปัจจุบัน"}
+                      </div>
+                    </div>
+                    {i === 0 ? (
+                      <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[11px] font-semibold text-emerald-700">
+                        ล่าสุด
+                      </span>
+                    ) : pendingSha === c.sha ? (
+                      <span className="flex items-center gap-1">
+                        <button
+                          type="button"
+                          disabled={restoring}
+                          onClick={() => doRestore(c.sha)}
+                          className="rounded-lg bg-rose-600 px-3 py-1 text-xs font-bold text-white hover:bg-rose-700 disabled:opacity-40"
+                        >
+                          {restoring ? "กำลังย้อน…" : "ยืนยันย้อนกลับ"}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setPendingSha("")}
+                          className="rounded-lg px-2 py-1 text-xs text-stone-400 hover:bg-stone-100"
+                        >
+                          ยกเลิก
+                        </button>
+                      </span>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => setPendingSha(c.sha)}
+                        className="rounded-lg border border-stone-300 px-3 py-1 text-xs font-semibold text-stone-600 hover:bg-stone-50"
+                      >
+                        ย้อนกลับ
+                      </button>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </Section>
+        ) : tab === "social" ? (
           <Section title="🔗 ลิงก์โซเชียล">
             <div className="flex flex-col gap-3">
               <div className="flex gap-2 px-1 text-xs font-semibold text-stone-400">
