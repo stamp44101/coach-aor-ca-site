@@ -69,9 +69,9 @@ function TextInput({
   const ta = TEXTAREA.has(dotted) || TEXTAREA.has(k);
   return (
     <label className="block">
-      <span className="mb-1 flex flex-wrap items-baseline gap-x-2">
-        <span className="text-sm font-semibold text-stone-700">{label}</span>
-        {help && <span className="text-xs text-stone-400">{help}</span>}
+      <span className="mb-1 block break-words text-sm">
+        <span className="font-semibold text-stone-700">{label}</span>
+        {help && <span className="ml-2 text-xs font-normal text-stone-400">{help}</span>}
       </span>
       {ta ? (
         <textarea
@@ -414,7 +414,7 @@ export default function AdminPage() {
   ];
 
   return (
-    <div className="mx-auto min-h-screen max-w-3xl bg-stone-100 px-4 py-6">
+    <div className="mx-auto min-h-screen max-w-3xl overflow-x-clip bg-stone-100 px-4 py-6">
       <header className="sticky top-0 z-10 -mx-4 mb-5 flex flex-wrap items-center gap-2 border-b border-stone-200 bg-stone-100/95 px-4 py-3 backdrop-blur">
         <h1 className="text-base font-bold text-stone-800">จัดการเนื้อหา Coach Aor</h1>
         {dirty && (
