@@ -340,6 +340,17 @@ export default function AdminPage() {
   };
   useEffect(() => { void load(); }, []);
 
+  // Belt-and-suspenders: clip horizontal overflow at the body level while on the
+  // admin page too, so anything a browser extension injects into the form fields
+  // can't push a horizontal scrollbar. Restored when leaving the page.
+  useEffect(() => {
+    const prev = document.body.style.overflowX;
+    document.body.style.overflowX = "clip";
+    return () => {
+      document.body.style.overflowX = prev;
+    };
+  }, []);
+
   const login = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoginErr("");
