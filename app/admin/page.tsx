@@ -410,18 +410,23 @@ export default function AdminPage() {
       <div className="flex flex-col gap-4 pb-24">
         {tab === "social" ? (
           <Section title="🔗 ลิงก์โซเชียล">
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-3">
+              <div className="flex gap-2 px-1 text-xs font-semibold text-stone-400">
+                <span className="w-32 shrink-0 sm:w-40">ชื่อ</span>
+                <span className="flex-1">ลิงก์ URL</span>
+              </div>
               {(data!.global.SOCIALS as [string, string][]).map((item, i) => (
                 <div key={i} className="flex gap-2">
                   <input
                     value={item[0]}
                     onChange={(e) => update("global")(["SOCIALS", i, 0], e.target.value)}
-                    className={input + " w-32 shrink-0"}
+                    className="w-32 shrink-0 rounded-lg border border-stone-300 px-3 py-2 text-sm focus:border-stone-500 focus:outline-none sm:w-40"
                   />
                   <input
                     value={item[1]}
                     onChange={(e) => update("global")(["SOCIALS", i, 1], e.target.value)}
-                    className={input}
+                    placeholder="https://..."
+                    className="min-w-0 flex-1 rounded-lg border border-stone-300 px-3 py-2 text-sm focus:border-stone-500 focus:outline-none"
                   />
                 </div>
               ))}
